@@ -3,6 +3,14 @@
 Claude Design canvas export for the Finster Carbon website. Each `.dc.html` is a
 standalone artboard — open one directly in a browser; there is no build step.
 
+`index.html` is a copy of `Homepage v3.dc.html`, so `/` serves the homepage on a
+static host. **Re-copy it after any canvas re-export**, or the deployed landing
+page goes stale:
+
+```bash
+cp "Homepage v3.dc.html" index.html
+```
+
 Note: the brand token throughout the code is `KARBN` (`window.KARBN*`), not `finster`.
 
 ## Artboards
@@ -10,7 +18,8 @@ Note: the brand token throughout the code is `KARBN` (`window.KARBN*`), not `fin
 | File | Role |
 |---|---|
 | `SiteHeader.dc.html`, `SiteFooter.dc.html` | Shared chrome — sticky nav w/ mega menu, footer |
-| `Homepage.dc.html`, `Homepage v2.dc.html`, `Homepage v3.dc.html` | Homepage iterations; **v2** is the richest (3D tyre, world map, procedural materials) |
+| `Homepage v3.dc.html` | **Canonical homepage** — what the header logo links to, and what `index.html` copies. |
+| `Homepage.dc.html`, `Homepage v2.dc.html` | Earlier homepage iterations, unlinked. **v2** is the richest (3D tyre, world map, procedural materials) but is not wired into the site. |
 | `Products.dc.html` | Product family listing |
 | `Product.dc.html`, `Product v1.dc.html` | Product detail iterations |
 | `Applications.dc.html` | End-market applications |
