@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  /* Layout breakpoints live in CSS: a JS-measured innerWidth is wrong on first paint in an
+     embedded frame. JS keeps only the open/closed toggles, which are real state. */
+  .k-nav, .k-inline { display: flex; }
+  .k-burger { display: none; }
+  @media (max-width: 1079px) {
+    .k-nav { display: none; }
+    .k-inline { display: none; }
+    .k-burger { display: flex; }
+    .k-mega { display: none !important; }
+  }
+  @media (min-width: 1080px) { .k-panel { display: none !important; } }
+</style>
+</helmet>
+<header style="position: sticky; top: 0; z-index: 60; background: rgba(246,244,240,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(23,24,27,0.12); font-family: Archivo, Helvetica, Arial, sans-serif;">
+  <div style="max-width: 1480px; margin: 0 auto; padding: 14px clamp(20px, 4vw, 64px); min-height: 76px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px clamp(20px, 3vw, 48px);">
+    <a href="Homepage v3.dc.html" style="display: block; flex: 0 0 auto;">
+      <img src="images/finster-logo.png" alt="Finster Carbon" style="display: block; height: 42px; width: auto;" />
+    </a>
+    <nav class="k-nav" style="align-items: center; gap: 2px; flex: 1 1 auto; min-width: 0;">
+      <div style="position: relative;" onMouseEnter="{{ openMenu }}" onMouseLeave="{{ closeMenu }}">
+        <a href="Products.dc.html" style="padding: 10px 14px; font-size: 14px; font-weight: 500; white-space: nowrap; display: flex; align-items: center; gap: 7px; color: {{ productsColor }};">
+          Products
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #6C6E73;">▾</span>
+        </a>
+        <div class="k-mega" style="position: absolute; top: 54px; left: -14px; width: min(720px, 76vw); background: #FFFDFA; border: 1px solid rgba(23,24,27,0.12); padding: 32px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 32px; box-shadow: 0 24px 48px -24px rgba(23,24,27,0.18); display: {{ menuDisplay }};">
+          <div>
+            <a href="Products.dc.html#carbon-black" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">01 / CARBON BLACK</a>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#n330" style="font-size: 14px; color: #17181B;">N330</a>
+              <a href="Product.dc.html#n550" style="font-size: 14px; color: #17181B;">N550</a>
+              <a href="Product.dc.html#n660" style="font-size: 14px; color: #17181B;">N660</a>
+              <a href="Product.dc.html#industrial-carbon-black" style="font-size: 14px; color: #17181B;">Industrial Carbon Black</a>
+              <a href="Product.dc.html#black-carbon-powder" style="font-size: 14px; color: #17181B;">Black Carbon Powder</a>
+            </div>
+          </div>
+          <div>
+            <a href="Products.dc.html#masterbatch" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">02 / MASTERBATCH</a>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#k-c5400" style="font-size: 14px; color: #17181B;">K-C5400</a>
+              <a href="Product.dc.html#lldpe-masterbatch" style="font-size: 14px; color: #17181B;">LLDPE Masterbatch</a>
+              <a href="Product.dc.html#ldpe-masterbatch" style="font-size: 14px; color: #17181B;">LDPE Masterbatch</a>
+              <a href="Product.dc.html#virgin-lldpe-masterbatch" style="font-size: 14px; color: #17181B;">Virgin LLDPE Masterbatch</a>
+              <a href="Product.dc.html#uv-stabilizer-masterbatch" style="font-size: 14px; color: #17181B;">UV Stabilizer Masterbatch</a>
+            </div>
+          </div>
+          <div>
+            <a href="Products.dc.html#circular-materials" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">03 / CIRCULAR MATERIALS</a>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#recovered-carbon-black" style="font-size: 14px; color: #17181B;">Recovered Carbon Black</a>
+              <a href="Product.dc.html#tyre-pyrolysis-oil" style="font-size: 14px; color: #17181B;">Tyre Pyrolysis Oil</a>
+              <a href="Product.dc.html#crumb-rubber" style="font-size: 14px; color: #17181B;">Crumb Rubber</a>
+              <a href="Product.dc.html#recovered-steel" style="font-size: 14px; color: #17181B;">Recovered Steel</a>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; padding-top: 18px;"><a href="Products.dc.html#library">MATERIALS LIBRARY →</a></div>
+          </div>
+        </div>
+      </div>
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+        <a href="{{ l.href }}" style="padding: 10px 14px; font-size: 14px; font-weight: 500; white-space: nowrap; color: {{ l.color }};">{{ l.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 16px; flex: 0 0 auto; margin-left: auto;">
+      <a href="Contact.dc.html" class="k-inline" style="font-size: 14px; font-weight: 500; color: #17181B; white-space: nowrap;">Contact</a>
+      <a href="Contact.dc.html" style="font-size: 13px; font-weight: 600; letter-spacing: 0.01em; color: #F6F4F0; background: #17181B; padding: 12px 20px; white-space: nowrap; flex-shrink: 0;" style-hover="background: #94A320;">Talk to an Expert</a>
+      <button onClick="{{ toggleNav }}" aria-label="Menu" class="k-burger" style="flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 5px; width: 46px; height: 46px; padding: 0 12px; box-sizing: border-box; background: none; border: 1px solid rgba(23,24,27,0.24); cursor: pointer;">
+        <span style="display: block; height: 1.5px; background: #17181B;"></span>
+        <span style="display: block; height: 1.5px; background: #17181B;"></span>
+        <span style="display: block; height: 1.5px; background: #17181B;"></span>
+      </button>
+    </div>
+  </div>
+  <div class="k-panel" style="display: {{ mobilePanelDisplay }}; border-top: 1px solid rgba(23,24,27,0.12); background: #F6F4F0;">
+    <div style="max-width: 1480px; margin: 0 auto; padding: 8px clamp(20px, 4vw, 64px) 20px; display: flex; flex-direction: column;">
+      <sc-for list="{{ mobileLinks }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="font-size: 18px; color: #17181B; padding: 15px 0; border-bottom: 1px solid rgba(23,24,27,0.1);" style-hover="color: #94A320;">{{ l.label }}</a>
+      </sc-for>
+    </div>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;products&quot;,&quot;applications&quot;,&quot;technology&quot;,&quot;sustainability&quot;,&quot;about&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const NAV = [
+  { key: "applications", label: "Applications", href: "Applications.dc.html" },
+  { key: "technology", label: "Technology", href: "Technology.dc.html" },
+  { key: "sustainability", label: "Sustainability", href: "Sustainability.dc.html" },
+  { key: "about", label: "About", href: "About.dc.html" },
+];
+
+class Component extends DCLogic {
+  // No width measurement: breakpoints are CSS.
+  state = { menu: false, navOpen: false };
+
+  renderVals() {
+    const active = this.props.active || "";
+    return {
+      links: NAV.map(n => Object.assign({}, n, { color: active === n.key ? "#94A320" : "#17181B" })),
+      productsColor: active === "products" ? "#94A320" : "#17181B",
+      menuDisplay: this.state.menu ? "grid" : "none",
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      mobilePanelDisplay: this.state.navOpen ? "block" : "none",
+      toggleNav: () => this.setState({ navOpen: !this.state.navOpen }),
+      mobileLinks: [{ label: "Products", href: "Products.dc.html" }].concat(
+        NAV.map(n => ({ label: n.label, href: n.href })),
+        [{ label: "Contact", href: "Contact.dc.html" }]
+      ),
+    };
+  }
+}
+</script>
+</body>
+</html>

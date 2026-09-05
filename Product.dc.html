@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<script src="materials.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+  @keyframes gradeA { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes gradeB { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+<div style="background: #F6F4F0; overflow-x: clip;">
+<dc-import name="SiteHeader" active="products" hint-size="100%,76px"></dc-import>
+
+<section style="position: relative; background: #101114; color: #F6F4F0; overflow: hidden;">
+  <canvas data-karbn-cv="specimen" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+  <div style="position: absolute; inset: 0; background: linear-gradient(100deg, #101114 6%, rgba(16,17,20,0.72) 42%, rgba(16,17,20,0.25) 100%); pointer-events: none;"></div>
+  <div style="position: relative; max-width: 1480px; margin: 0 auto; padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 64px) clamp(36px, 5vw, 64px); pointer-events: none;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(246,244,240,0.55); pointer-events: auto;">
+      <a href="Products.dc.html" style="color: rgba(246,244,240,0.55);">PRODUCTS</a> / <a href="{{ familyHref }}" style="color: rgba(246,244,240,0.55);">{{ familyUpper }}</a> / <span style="color: #F6F4F0;">{{ nameUpper }}</span>
+    </div>
+    <div style="animation: {{ anim }} 480ms ease both; padding-top: clamp(32px, 6vh, 72px);">
+      <h1 style="font-size: clamp(42px, 7.4vw, 118px); line-height: 0.92; letter-spacing: -0.05em; font-weight: 600; margin: 0;">{{ name }}</h1>
+      <div style="font-size: clamp(17px, 1.8vw, 24px); letter-spacing: -0.02em; color: #94A320; padding-top: 14px;">{{ tagline }}</div>
+      <p style="font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; color: rgba(246,244,240,0.74); margin: 22px 0 0; max-width: 52ch;">{{ desc }}</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: clamp(28px, 4vw, 44px); pointer-events: auto;">
+      <sc-for list="{{ figures }}" as="f" hint-placeholder-count="3">
+        <div onMouseEnter="{{ f.hover }}" onMouseLeave="{{ clearHover }}" style="border: 1px solid {{ f.border }}; background: {{ f.bg }}; padding: 16px 20px; cursor: default; transition: all 180ms; animation: {{ anim }} 520ms ease both;">
+          <div style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; color: {{ f.vColor }}; transition: color 180ms;">{{ f.v }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: {{ f.lColor }}; padding-top: 10px; transition: color 180ms;">{{ f.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; color: #94A320; padding-top: 20px; min-height: 40px; max-width: 68ch;">{{ hoverText }}</div>
+  </div>
+  <div style="position: relative; border-top: 1px solid rgba(246,244,240,0.14);">
+    <div style="max-width: 1480px; margin: 0 auto; padding: 14px clamp(20px, 4vw, 64px); display: flex; align-items: center; gap: 18px; overflow-x: auto;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.42); white-space: nowrap;">SWITCH GRADE</div>
+      <div style="display: flex; gap: 6px;">
+        <sc-for list="{{ rail }}" as="r" hint-placeholder-count="15">
+          <button onClick="{{ r.select }}" style="cursor: pointer; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; padding: 9px 13px; border: 1px solid {{ r.border }}; background: {{ r.bg }}; color: {{ r.color }}; transition: all 160ms;">{{ r.name }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(48px, 7vw, 100px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: grid; grid-template-columns: minmax(300px, 1.15fr) minmax(260px, 0.85fr); gap: clamp(28px, 5vw, 80px); align-items: start;">
+    <div style="min-width: 0;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">TECHNICAL SPECIFICATION — HOVER A ROW</div>
+      <div style="animation: {{ anim }} 480ms ease both;">
+        <sc-for list="{{ rows }}" as="row" hint-placeholder-count="7">
+          <div onMouseEnter="{{ row.hover }}" onMouseLeave="{{ clearHover }}" style="display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 14px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid rgba(23,24,27,0.12); font-size: 15px; background: {{ row.bg }}; transition: background 160ms;">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: {{ row.dot }}; transition: background 160ms;"></div>
+            <div style="color: {{ row.kColor }}; transition: color 160ms;">{{ row.k }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; color: {{ row.vColor }}; text-align: right; transition: color 160ms;">{{ row.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+        <div style="border-left: 2px solid #94A320; padding: 14px 0 14px 16px; margin-top: 28px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">SOURCE NOTE</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: #6C6E73; padding-top: 8px; max-width: 62ch;">{{ note }}</div>
+        </div>
+      </sc-if>
+    </div>
+    <div style="position: sticky; top: 100px;">
+      <div style="background: #101114; color: #F6F4F0; padding: clamp(22px, 3vw, 34px);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5);">{{ panelLabel }}</div>
+        <div style="font-size: clamp(19px, 2vw, 26px); line-height: 1.25; letter-spacing: -0.025em; font-weight: 500; padding-top: 14px;">{{ panelValue }}</div>
+        <p style="font-size: 15px; line-height: 1.65; color: rgba(246,244,240,0.68); margin: 14px 0 0;">{{ panelText }}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px;">
+        <a href="Contact.dc.html" style="text-align: center; font-size: 14px; font-weight: 600; color: #F6F4F0; background: #17181B; padding: 16px 24px;" style-hover="background: #94A320;">Download TDS</a>
+        <a href="Contact.dc.html" style="text-align: center; font-size: 14px; font-weight: 600; color: #17181B; padding: 16px 24px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B;">Request a Sample</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(48px, 7vw, 100px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: start; animation: {{ anim }} 520ms ease both;">
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">PERFORMANCE</div>
+      <sc-for list="{{ perf }}" as="p" hint-placeholder-count="5">
+        <div style="display: flex; gap: 14px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid rgba(23,24,27,0.12); font-size: 16px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #94A320;">+</span>{{ p }}
+        </div>
+      </sc-for>
+    </div>
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">APPLICATIONS</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px;">
+        <sc-for list="{{ applications }}" as="a" hint-placeholder-count="5">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3A3C41; border: 1px solid rgba(23,24,27,0.18); padding: 7px 11px;">{{ a }}</div>
+        </sc-for>
+      </div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6C6E73; padding-top: 24px;">{{ appLine }}</div>
+    </div>
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">OTHER GRADES IN {{ familyUpper }}</div>
+      <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+        <button onClick="{{ r.select }}" style="display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid rgba(23,24,27,0.12); padding: 16px 0; cursor: pointer;" style-hover="background: rgba(23,24,27,0.035);">
+          <div style="font-size: 18px; font-weight: 600; letter-spacing: -0.025em; color: #17181B;">{{ r.name }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #6C6E73; padding-top: 6px;">{{ r.tagline }}</div>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background: #101114; color: #F6F4F0; margin-top: clamp(56px, 9vw, 130px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px); display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between;">
+    <div>
+      <h2 style="font-size: clamp(28px, 4vw, 56px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 24ch;">Talk to the technical team about {{ name }}.</h2>
+      <p style="font-size: 17px; line-height: 1.55; color: rgba(246,244,240,0.66); margin: 20px 0 0; max-width: 46ch;">Specifications, let-down ratios, trial quantities and documentation.</p>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #101114; background: #F6F4F0; padding: 17px 28px;" style-hover="background: #94A320; color: #F6F4F0;">Request a Sample</a>
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #F6F4F0; padding: 17px 28px; border: 1px solid rgba(246,244,240,0.34);" style-hover="border-color: #F6F4F0;">Talk to Technical Team</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+
+<a href="Contact.dc.html" style="position: fixed; right: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 40px); z-index: 70; background: #94A320; color: #F6F4F0; font-size: 13px; font-weight: 600; letter-spacing: 0.01em; padding: 16px 24px; box-shadow: 0 16px 32px -16px rgba(23,24,27,0.5);" style-hover="background: #17181B;">Request Information</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;k-c5400&quot;,&quot;n330&quot;,&quot;n550&quot;,&quot;n660&quot;,&quot;industrial-carbon-black&quot;,&quot;black-carbon-powder&quot;,&quot;lldpe-masterbatch&quot;,&quot;ldpe-masterbatch&quot;,&quot;virgin-lldpe-masterbatch&quot;,&quot;plastic-black-masterbatch&quot;,&quot;uv-stabilizer-masterbatch&quot;,&quot;recovered-carbon-black&quot;,&quot;tyre-pyrolysis-oil&quot;,&quot;crumb-rubber&quot;,&quot;recovered-steel&quot;],&quot;default&quot;:&quot;k-c5400&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const EXPLAIN = {
+  "Carrier": "The thermoplastic resin the carbon black is dispersed in. It has to be compatible with your base polymer.",
+  "Carbon black": "The pigment grade used, which sets jetness and reinforcement behaviour in the finished part.",
+  "Carbon content": "Carbon concentration in the concentrate. It determines the let-down ratio needed to hit your opacity target.",
+  "Carbon black loading": "Concentration of pigment in the carrier resin, expressed as a range across the grade family.",
+  "MFI": "Melt flow index. Indicates how the concentrate will flow relative to your base resin on the line.",
+  "Density": "Bulk density of the granule, used for volumetric dosing and packaging calculations.",
+  "Pour density": "Bulk density as supplied. Relevant to handling, conveying and dosing equipment.",
+  "Heat stability": "The maximum processing temperature the formulation is specified to withstand.",
+  "Form": "Physical supply form. Granules feed more predictably than powder and dust less.",
+  "Packaging": "Standard pack size, which drives ordering quantity and logistics.",
+  "Type": "ASTM classification. It fixes particle size and structure, and with them reinforcement behaviour.",
+  "Iodine adsorption": "A proxy for surface area. Higher values generally mean more reinforcement.",
+  "DBP absorption": "Structure measure. It affects compound viscosity and how the material processes.",
+  "Source": "Where in the process chain the material originates.",
+  "Function": "The role the material plays inside a compound.",
+  "Particle size distribution": "Consistency here is what makes dispersion repeatable batch to batch.",
+  "Quality system": "The certified quality management standard batches are released under.",
+  "Ash content": "Inorganic residue. Higher ash restricts use in the most demanding compounds.",
+  "Annual production": "Stated output of the producing facility — relevant to supply continuity.",
+  "Calorific value": "Energy content, which sets the substitution ratio against conventional fuel.",
+  "Sulphur content": "Governs emissions compliance and downstream processing constraints.",
+  "Supply mode": "How the material is delivered — drums, tankers or bulk.",
+  "Compatible polymers": "The base resins this concentrate is intended for.",
+  "Additive package": "The stabiliser chemistry, which determines exposure performance.",
+  "Recommended dosage": "The let-down ratio needed for the intended effect.",
+  "Available grades": "Which specific grades can be supplied against a requirement.",
+  "Grade": "The specific grade designation supplied.",
+  "Mesh sizes": "Particle size grading of the granulate.",
+  "Steel / fibre content": "Residual tyre reinforcement left after processing.",
+  "Availability": "Whether this stream is currently offered as a product.",
+  "Specification": "The documented property set for the material.",
+};
+
+const FIG_EXPLAIN = {
+  "CARBON CONCENTRATION": "Carbon concentration within the masterbatch formulation.",
+  "HEAT STABILITY": "Heat stability specification — the ceiling for processing temperature.",
+  "MFI, g/10 MIN": "Melt flow index range, measured in grams per 10 minutes.",
+  "DENSITY, g/cc": "Density range of the granule in grams per cubic centimetre.",
+  "ASTM DESIGNATION": "The ASTM grade code, which fixes particle size and structure.",
+  "LOADING IN K-C5400": "The loading at which this grade is used in the K-C5400 masterbatch.",
+  "GHG REDUCTION VS. VIRGIN CB*": "Company-stated reduction against virgin carbon black production. Methodology not yet published.",
+  "9001:2015 CERTIFIED": "Quality management certification stated by the producer. Validity dates unverified.",
+  "ANNUAL PRODUCTION*": "Company-stated annual output of the producing facility.",
+  "CARRIER RESIN": "The carrier is fully virgin resin, with no recycled content.",
+  "CARBON BLACK LOADING": "Pigment concentration range across this grade family.",
+  "K-C5400 STABILITY": "Heat stability of the K-C5400 grade.",
+};
+
+const FORM_BY_FAMILY = { "carbon-black": 0, "masterbatch": 1, "circular-materials": 3 };
+
+class Component extends DCLogic {
+  state = { slug: null, hover: null, tick: 0 };
+
+  componentDidMount() {
+    // the specimen canvas is created and driven by materials.js (self-running)
+    this.onHash = () => {
+      const s = (window.location.hash || "").replace("#", "");
+      this.setState({ slug: s || null, tick: this.state.tick + 1 });
+      this.syncForm(s);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", this.onHash);
+    const s = (window.location.hash || "").replace("#", "");
+    if (s) { this.setState({ slug: s }); this.syncForm(s); }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.onHash);
+  }
+
+  current(slugOverride) {
+    const K = window.KARBN;
+    const slug = slugOverride || this.state.slug || this.props.slug || "k-c5400";
+    return K.bySlug(slug) || K.bySlug("k-c5400");
+  }
+
+  syncForm(slug) {
+    const M = window.KARBN_MAT;
+    const field = M && M.AUTO.vis.specimen;
+    if (!field || !window.KARBN) return;
+    const p = this.current(slug);
+    field.setForm(FORM_BY_FAMILY[p.familySlug] != null ? FORM_BY_FAMILY[p.familySlug] : 0);
+  }
+
+  pick(slug) {
+    if (slug === (this.state.slug || "k-c5400")) return;
+    if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + slug);
+    else window.location.hash = slug;
+    this.setState({ slug: slug, hover: null, tick: this.state.tick + 1 });
+    this.syncForm(slug);
+  }
+
+  renderVals() {
+    const K = window.KARBN;
+    if (!K) return {};
+    const p = this.current();
+    const hov = this.state.hover;
+
+    const panel = hov
+      ? { label: hov.kind === "figure" ? "SPECIFICATION" : "PROPERTY", value: hov.value, text: hov.text }
+      : { label: "READING THIS PAGE", value: p.tagline, text: "Hover any specification figure or table row and its meaning appears here. Switch grade on the rail above to compare across the family." };
+
+    return {
+      anim: this.state.tick % 2 === 0 ? "gradeA" : "gradeB",
+      name: p.name, nameUpper: p.name.toUpperCase(), tagline: p.tagline, desc: p.desc, appLine: p.appLine,
+      familyUpper: p.family.toUpperCase(), familyHref: "Products.dc.html#" + p.familySlug,
+      figures: p.figures.map(f => {
+        const on = hov && hov.key === f.l;
+        return {
+          v: f.v, l: f.l,
+          bg: on ? "rgba(148,163,32,0.14)" : "transparent",
+          border: on ? "#94A320" : "rgba(246,244,240,0.24)",
+          vColor: "#F6F4F0", lColor: on ? "#94A320" : "rgba(246,244,240,0.55)",
+          hover: () => this.setState({ hover: { kind: "figure", key: f.l, value: f.v + " · " + f.l.replace("*", ""), text: FIG_EXPLAIN[f.l] || "Specification figure for this grade." } }),
+        };
+      }),
+      hoverText: hov ? hov.text : "",
+      clearHover: () => this.setState({ hover: null }),
+      rows: p.rows.map(r => {
+        const on = hov && hov.key === r.k;
+        return {
+          k: r.k, v: r.v,
+          bg: on ? "rgba(148,163,32,0.07)" : "transparent",
+          dot: on ? "#94A320" : "rgba(23,24,27,0.18)",
+          kColor: on ? "#17181B" : "#6C6E73",
+          vColor: r.v === K.TBC ? "#A8A199" : "#17181B",
+          hover: () => this.setState({ hover: { kind: "row", key: r.k, value: r.k + " — " + r.v, text: EXPLAIN[r.k] || "Specification detail. Ask the technical team for the current data sheet." } }),
+        };
+      }),
+      panelLabel: panel.label, panelValue: panel.value, panelText: panel.text,
+      perf: p.perf, applications: p.applications,
+      note: p.note || "", hasNote: !!p.note,
+      rail: K.PRODUCTS.map(x => {
+        const on = x.slug === p.slug;
+        return {
+          name: x.name, select: () => this.pick(x.slug),
+          bg: on ? "#F6F4F0" : "transparent",
+          color: on ? "#101114" : "rgba(246,244,240,0.78)",
+          border: on ? "#F6F4F0" : "rgba(246,244,240,0.26)",
+        };
+      }),
+      related: K.PRODUCTS.filter(x => x.familySlug === p.familySlug && x.slug !== p.slug)
+        .map(x => ({ name: x.name, tagline: x.tagline, select: () => this.pick(x.slug) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

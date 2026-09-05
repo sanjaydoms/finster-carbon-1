@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #17181B; color: #F6F4F0; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #F6F4F0; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+</style>
+</helmet>
+<div style="background: #17181B; overflow-x: clip;">
+<div style="background: #F6F4F0;">
+  <dc-import name="SiteHeader" hint-size="100%,76px"></dc-import>
+</div>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">CONTACT</div>
+  <h1 style="font-size: clamp(38px, 6.4vw, 100px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; margin: 26px 0 0; max-width: 19ch;">Let's engineer the right material for your application.</h1>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: clamp(36px, 5vw, 68px);">
+    <div>
+      <p style="font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; color: rgba(246,244,240,0.66); margin: 0; max-width: 46ch;">Tell us the polymer, the process and the property you are trying to hit. A technical contact answers — not a form autoresponder.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px; padding-top: 44px;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 12px; border-bottom: 1px solid rgba(246,244,240,0.2);">DIRECT</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; font-size: 16px;">
+            <a href="tel:919967517738" style="color: #F6F4F0;">+91 99675 17738</a>
+            <a href="mailto:bp@finstercarbon.com" style="color: #F6F4F0;">bp@finstercarbon.com</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 12px; border-bottom: 1px solid rgba(246,244,240,0.2);">MANUFACTURING</div>
+          <div style="font-size: 15px; line-height: 1.65; color: rgba(246,244,240,0.78); padding-top: 14px;">New Era Warehousing and Industrial Complex, Village Vanivali/Lohop, Tal. Khalapur, Dist. Raigad</div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 12px; border-bottom: 1px solid rgba(246,244,240,0.2);">ENTITIES</div>
+          <div style="font-size: 15px; line-height: 1.65; color: rgba(246,244,240,0.78); padding-top: 14px;">Masterbatch Technologies LLP<br />Finster Black Pvt. Ltd.</div>
+        </div>
+      </div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: rgba(246,244,240,0.42); padding-top: 36px; max-width: 60ch;">Contact details as published on finstercarbon.com. A separate commercial contact for the masterbatch business is not published and should be added.</div>
+    </div>
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 14px;">WHAT DO YOU NEED?</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 36px;">
+        <sc-for list="{{ intents }}" as="i" hint-placeholder-count="4">
+          <button onClick="{{ i.select }}" style="cursor: pointer; font-size: 13px; font-weight: 500; padding: 11px 17px; border: 1px solid {{ i.border }}; background: {{ i.bg }}; color: {{ i.color }}; transition: all 140ms;">{{ i.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 32px;">
+        <sc-for list="{{ fields }}" as="f" hint-placeholder-count="9">
+          <label style="display: block; padding-bottom: 24px;">
+            <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 8px;">{{ f.label }}</span>
+            <input value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" style="width: 100%; box-sizing: border-box; background: none; border: 0; border-bottom: 1px solid rgba(246,244,240,0.24); color: #F6F4F0; font-size: 16px; padding: 8px 0; outline: none;" style-focus="border-color: #94A320;" />
+          </label>
+        </sc-for>
+      </div>
+      <label style="display: block; padding-bottom: 32px;">
+        <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 8px;">MESSAGE</span>
+        <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="4" placeholder="Application, process, target properties, annual requirement" style="width: 100%; box-sizing: border-box; background: none; border: 0; border-bottom: 1px solid rgba(246,244,240,0.24); color: #F6F4F0; font-size: 16px; padding: 8px 0; outline: none; resize: vertical;" style-focus="border-color: #94A320;"></textarea>
+      </label>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
+        <button onClick="{{ submit }}" style="cursor: pointer; border: 0; font-size: 14px; font-weight: 600; color: #17181B; background: #F6F4F0; padding: 17px 30px;" style-hover="background: #94A320; color: #F6F4F0;">{{ submitLabel }}</button>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">{{ statusText }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background: #F6F4F0; margin-top: clamp(64px, 10vw, 140px);">
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { intent: "Request a Sample", form: {}, message: "", submitted: false };
+
+  renderVals() {
+    const K = window.KARBN;
+    if (!K) return {};
+    return {
+      intents: K.INTENTS.map(l => ({
+        label: l,
+        select: () => this.setState({ intent: l, submitted: false }),
+        bg: this.state.intent === l ? "#F6F4F0" : "transparent",
+        color: this.state.intent === l ? "#17181B" : "rgba(246,244,240,0.8)",
+        border: this.state.intent === l ? "#F6F4F0" : "rgba(246,244,240,0.3)",
+      })),
+      fields: K.FIELD_DEFS.map(d => ({
+        label: d.label, placeholder: d.placeholder,
+        value: this.state.form[d.key] || "",
+        onChange: e => this.setState(s => ({ form: Object.assign({}, s.form, { [d.key]: e.target.value }), submitted: false })),
+      })),
+      message: this.state.message,
+      onMessage: e => this.setState({ message: e.target.value, submitted: false }),
+      submitLabel: this.state.intent,
+      submit: () => this.setState({ submitted: true }),
+      statusText: this.state.submitted ? "Enquiry captured — a technical contact will respond within one working day." : "",
+    };
+  }
+}
+</script>
+</body>
+</html>

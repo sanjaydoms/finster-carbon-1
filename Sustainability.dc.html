@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+</style>
+</helmet>
+<div style="background: #F6F4F0; overflow-x: clip;">
+<dc-import name="SiteHeader" active="sustainability" hint-size="100%,76px"></dc-import>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">SUSTAINABILITY</div>
+  <h1 style="font-size: clamp(44px, 8vw, 128px); line-height: 0.92; letter-spacing: -0.045em; font-weight: 600; margin: 26px 0 0; max-width: 13ch;">Circularity, measured.</h1>
+  <p style="font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; color: #3A3C41; max-width: 56ch; margin: clamp(24px, 4vw, 44px) 0 0;">Every figure on this page is a company-stated number with its source named. Where a claim needs a methodology or a third-party assessment to stand up, that gap is stated rather than dressed over.</p>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-left: -1px; border-top: 1px solid rgba(23,24,27,0.12); margin-top: clamp(36px, 5vw, 64px);">
+    <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+      <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px 32px 0;">
+        <div style="font-size: clamp(44px, 5.6vw, 84px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600;">{{ m.v }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6; white-space: pre-line;">{{ m.l }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #94A320; padding-top: 12px;">{{ m.src }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: #6C6E73; padding-top: 20px; max-width: 84ch;">All four figures are as published by the company on finstercarbon.com. They are company statements, not independently verified, and the supporting methodology has not been reviewed here.</div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">01 / WHERE THE IMPACT SITS</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Recovery, not messaging.</h2>
+  </div>
+  <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="6">
+    <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1.5fr); gap: clamp(16px, 3vw, 40px); align-items: baseline; padding: 28px 0; border-bottom: 1px solid rgba(23,24,27,0.12);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">{{ p.num }}</div>
+      <div style="font-size: clamp(20px, 2.1vw, 28px); letter-spacing: -0.03em; font-weight: 600;">{{ p.name }}</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #3A3C41;">{{ p.body }}</div>
+    </div>
+  </sc-for>
+</section>
+
+<section style="background: #17181B; color: #F6F4F0; margin-top: clamp(64px, 10vw, 140px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(64px, 9vw, 130px) clamp(20px, 4vw, 64px);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">02 / THE 85% CLAIM</div>
+    <h2 style="font-size: clamp(30px, 4.8vw, 70px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 26px 0 0; max-width: 22ch;">A number this large needs a method attached to it.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 5vw, 72px); padding-top: clamp(36px, 5vw, 64px);">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 14px; border-bottom: 1px solid rgba(246,244,240,0.2);">AS PUBLISHED</div>
+        <p style="font-size: 16px; line-height: 1.6; color: rgba(246,244,240,0.78); margin: 16px 0 0;">"Reduction in CO2 emissions as compared to virgin carbon black production." Stated as 85% on finstercarbon.com under Green House Gas (GHG).</p>
+      </div>
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 14px; border-bottom: 1px solid rgba(246,244,240,0.2);">WHAT IS MISSING</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; font-size: 15px; color: rgba(246,244,240,0.78);">
+          <div>System boundary and functional unit</div>
+          <div>Reference dataset for virgin carbon black</div>
+          <div>LCA methodology and standard applied</div>
+          <div>Third-party review or verification statement</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 14px; border-bottom: 1px solid rgba(246,244,240,0.2);">RECOMMENDATION</div>
+        <p style="font-size: 16px; line-height: 1.6; color: rgba(246,244,240,0.78); margin: 16px 0 0;">Publish the figure with the methodology alongside it, or present it as an internal estimate until an assessment is available. ESG reviewers will ask for both.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">03 / DOCUMENTATION</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Sustainability &amp; quality documents.</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-left: -1px;">
+    <sc-for list="{{ docs }}" as="d" hint-placeholder-count="6">
+      <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px 28px 0;">
+        <div style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em;">{{ d.name }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: {{ d.color }}; padding-top: 12px;">{{ d.status }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: #6C6E73; padding-top: 20px; max-width: 84ch;">ISO 9001:2015 is stated on both source sites; certificate validity dates were not verifiable when this page was built. Nothing here should be published as current until the certificate is checked. Expired documents must be marked as expired, not quietly shown.</div>
+  <a href="Contact.dc.html" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 32px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">Request documentation <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between;">
+    <h2 style="font-size: clamp(28px, 4vw, 56px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 24ch;">Evaluating recycled content for your specification?</h2>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="Product.dc.html#recovered-carbon-black" style="font-size: 14px; font-weight: 600; color: #F6F4F0; background: #17181B; padding: 17px 28px;" style-hover="background: #94A320;">rCB technical page</a>
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #17181B; padding: 17px 28px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B;">Talk to an Expert</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const METRICS = [
+  { v: "15M", l: "END-OF-LIFE TYRES\nCOLLECTED ANNUALLY", src: "COMPANY-STATED" },
+  { v: "36,000 t", l: "ANNUAL TYRE PYROLYSIS\nOIL PRODUCTION", src: "COMPANY-STATED" },
+  { v: "85%", l: "GHG REDUCTION VS. VIRGIN\nCARBON BLACK PRODUCTION", src: "CLAIM — METHOD NEEDED" },
+  { v: "Zero", l: "LANDFILL — ALL TYRES\nCOLLECTED ARE RECYCLED", src: "COMPANY-STATED" },
+];
+
+const PILLARS = [
+  { name: "End-of-life tyre recovery", body: "Scrap tyres are collected by the group's own fleet and converted into products used in tyre manufacturing, rather than leaving the material stream." },
+  { name: "Material recovery", body: "Pyrolysis separates the tyre into recovered carbon black, pyrolysis oil and crumb rubber, each with an industrial use rather than a disposal route." },
+  { name: "Reduced virgin dependence", body: "rCB substitutes for or blends with petroleum-based carbon black, lowering the virgin feedstock a compound requires." },
+  { name: "Resource efficiency", body: "Vertical integration keeps collection, processing and material production under one operation. Efficiency figures to be confirmed." },
+  { name: "Energy integration", body: "Pyrolysis oil is used as an industrial fuel and as feedstock for carbon black production. Internal energy recovery to be confirmed." },
+  { name: "Zero-landfill ambition", body: "The company states all tyres collected are recycled and not landfilled. Supporting audit or mass-balance evidence to be attached." },
+];
+
+const DOCS = [
+  { name: "ISO 9001:2015 certificate", status: "STATED — VALIDITY UNVERIFIED", color: "#94A320" },
+  { name: "Life cycle assessment (LCA)", status: "NOT AVAILABLE", color: "#A8A199" },
+  { name: "Safety data sheets (SDS)", status: "TO BE ATTACHED", color: "#A8A199" },
+  { name: "REACH documentation", status: "TO BE CONFIRMED", color: "#A8A199" },
+  { name: "RoHS declaration", status: "TO BE CONFIRMED", color: "#A8A199" },
+  { name: "Technical data sheets", status: "PER GRADE — ON REQUEST", color: "#3A3C41" },
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      metrics: METRICS,
+      pillars: PILLARS.map((p, i) => ({ name: p.name, body: p.body, num: String(i + 1).padStart(2, "0") })),
+      docs: DOCS,
+    };
+  }
+}
+</script>
+</body>
+</html>

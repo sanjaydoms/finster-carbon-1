@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  input, select, textarea, button { font-family: inherit; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+</style>
+</helmet>
+
+<div style="max-width: 100%; overflow-x: clip; background: #F6F4F0;">
+
+<dc-import name="SiteHeader" hint-size="100%,76px"></dc-import>
+
+<section id="top" style="max-width: 1480px; margin: 0 auto; padding: clamp(72px, 11vh, 140px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">ADVANCED MATERIALS &amp; CIRCULAR MANUFACTURING</div>
+  <h1 style="font-size: clamp(44px, 8.2vw, 132px); line-height: 0.93; letter-spacing: -0.045em; font-weight: 600; margin: 28px 0 0; max-width: 17ch; text-wrap: balance;">Materials that move industry forward.</h1>
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(28px, 6vw, 96px); align-items: flex-end; margin-top: clamp(32px, 5vw, 64px);">
+    <p style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.5; color: #3A3C41; max-width: 46ch; margin: 0; flex: 1 1 340px;">Carbon black, masterbatch and circular materials engineered for modern manufacturing.</p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="Products.dc.html" style="font-size: 14px; font-weight: 600; color: #F6F4F0; background: #17181B; padding: 17px 28px;" style-hover="background: #94A320;">Explore Materials</a>
+      <a href="Technology.dc.html" style="font-size: 14px; font-weight: 600; color: #17181B; padding: 17px 28px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B; background: rgba(23,24,27,0.04);">Our Technology</a>
+    </div>
+  </div>
+  <div style="margin-top: clamp(56px, 9vw, 120px); border-top: 1px solid rgba(23,24,27,0.16); padding-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-left: -1px;">
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 22px 0 8px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">01 — CARBON</div>
+      <div style="font-size: 15px; color: #3A3C41; padding-top: 10px; max-width: 22ch;">Furnace-grade carbon black for rubber and polymer systems.</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 22px 0 8px 24px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73;">02 — MATERIALS</div>
+      <div style="font-size: 15px; color: #3A3C41; padding-top: 10px; max-width: 22ch;">Black and additive masterbatch, formulated to the polymer.</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 22px 0 8px 24px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73;">03 — MANUFACTURING</div>
+      <div style="font-size: 15px; color: #3A3C41; padding-top: 10px; max-width: 22ch;">Compounding, dispersion and granulation under one quality system.</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 22px 0 8px 24px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73;">04 — CIRCULARITY</div>
+      <div style="font-size: 15px; color: #3A3C41; padding-top: 10px; max-width: 22ch;">End-of-life tyres recovered back into industrial feedstock.</div>
+    </div>
+  </div>
+</section>
+
+<section id="materials" style="max-width: 1480px; margin: 0 auto; padding: clamp(88px, 13vw, 180px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">02 / MATERIAL UNIVERSE</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto; text-align: right;">One platform. Multiple material technologies.</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 56px); align-items: start; padding: clamp(40px, 5vw, 72px) 0; border-bottom: 1px solid rgba(23,24,27,0.12);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #94A320;">01</div>
+    <div>
+      <h3 style="font-size: clamp(32px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0;">Carbon Black</h3>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #6C6E73; padding-top: 20px;">N330 · N550 · N660</div>
+    </div>
+    <div>
+      <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: #3A3C41; margin: 0; max-width: 44ch;">Industrial carbon black engineered for rubber, plastics and other demanding applications. Supplied as powder and in granulated form for dispersion-critical processes.</p>
+      <a href="Products.dc.html#carbon-black" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 26px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">Explore Carbon Black <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 56px); align-items: start; padding: clamp(40px, 5vw, 72px) 0; border-bottom: 1px solid rgba(23,24,27,0.12);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73;">02</div>
+    <div>
+      <h3 style="font-size: clamp(32px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0;">Masterbatch</h3>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #6C6E73; padding-top: 20px;">LDPE · LLDPE · PE · ABS</div>
+    </div>
+    <div>
+      <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: #3A3C41; margin: 0; max-width: 44ch;">High-performance black and additive masterbatch for polymer processing — high concentrations of carbon black, typically 15–50%, dispersed in a thermoplastic carrier resin.</p>
+      <a href="Products.dc.html#masterbatch" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 26px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">Explore Masterbatch <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 56px); align-items: start; padding: clamp(40px, 5vw, 72px) 0;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73;">03</div>
+    <div>
+      <h3 style="font-size: clamp(32px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0;">Circular Materials</h3>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #6C6E73; padding-top: 20px;">rCB · TPO · Crumb Rubber</div>
+    </div>
+    <div>
+      <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: #3A3C41; margin: 0; max-width: 44ch;">Recovered materials created from end-of-life tyres and designed for industrial reuse — a lower-carbon-footprint route to reinforcing rubber, plastics and coatings.</p>
+      <a href="Products.dc.html#circular-materials" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 26px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">Explore Circular Materials <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="applications" style="max-width: 1480px; margin: 0 auto; padding: clamp(72px, 11vw, 150px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">03 / APPLICATIONS</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Engineered around your process.</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 80px); padding-top: clamp(32px, 4vw, 56px);">
+    <div style="display: flex; flex-direction: column;">
+      <sc-for list="{{ apps }}" as="app" hint-placeholder-count="9">
+        <button onClick="{{ app.select }}" style="text-align: left; background: none; border: 0; border-top: 1px solid rgba(23,24,27,0.12); padding: 15px 0; cursor: pointer; display: flex; align-items: center; gap: 14px; font-size: clamp(18px, 1.9vw, 26px); letter-spacing: -0.02em; color: {{ app.color }}; font-weight: {{ app.weight }};" style-hover="color: #17181B;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #9A9CA1;">{{ app.num }}</span>
+          {{ app.name }}
+        </button>
+      </sc-for>
+    </div>
+    <div style="border-top: 1px solid rgba(23,24,27,0.16); padding-top: 15px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">SELECTED APPLICATION</div>
+      <h3 style="font-size: clamp(28px, 3.4vw, 44px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; margin: 16px 0 0;">{{ activeApp.name }}</h3>
+      <p style="font-size: 17px; line-height: 1.55; color: #3A3C41; margin: 18px 0 0; max-width: 52ch;">{{ activeApp.desc }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; padding-top: 36px;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">RELEVANT MATERIALS</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px;">
+            <sc-for list="{{ activeApp.products }}" as="p" hint-placeholder-count="4">
+              <div style="font-size: 15px; color: #17181B;">{{ p }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">EXAMPLE USE CASES</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 14px;">
+            <sc-for list="{{ activeApp.uses }}" as="u" hint-placeholder-count="6">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3A3C41; border: 1px solid rgba(23,24,27,0.18); padding: 6px 10px;">{{ u }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <a href="{{ activeApp.href }}" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 36px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">{{ activeApp.cta }} <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="technology" ref="{{ techRef }}" style="background: #17181B; color: #F6F4F0; margin-top: clamp(88px, 13vw, 180px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(72px, 10vw, 140px) clamp(20px, 4vw, 64px);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">04 / CIRCULARITY &amp; TECHNOLOGY</div>
+    <h2 style="font-size: clamp(34px, 5.6vw, 82px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 26px 0 0; max-width: 20ch;">From end-of-life to industrial value.</h2>
+    <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: rgba(246,244,240,0.66); margin: 24px 0 0; max-width: 54ch;">Our circular materials platform transforms end-of-life tyres into valuable industrial resources. A fleet collects scrap tyres and converts them into products used in tyre and polymer manufacturing.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 6vw, 96px); padding-top: clamp(48px, 7vw, 96px);">
+      <div style="position: relative; padding-left: 46px;">
+        <div style="position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: rgba(246,244,240,0.16);"></div>
+        <div style="position: absolute; left: 7px; top: 8px; width: 1px; background: #94A320; height: {{ progressPct }}; transition: height 120ms linear;"></div>
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="6">
+          <div style="position: relative; padding-bottom: clamp(28px, 4vw, 52px);">
+            <div style="position: absolute; left: -43px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: {{ step.dot }}; transition: background 200ms;"></div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: {{ step.numColor }}; transition: color 200ms;">{{ step.num }}</div>
+            <div style="font-size: clamp(20px, 2.1vw, 28px); letter-spacing: -0.03em; font-weight: 600; padding-top: 8px; color: {{ step.titleColor }}; transition: color 200ms;">{{ step.title }}</div>
+            <div style="font-size: 15px; line-height: 1.55; color: rgba(246,244,240,0.6); padding-top: 8px; max-width: 40ch;">{{ step.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 14px; border-bottom: 1px solid rgba(246,244,240,0.2);">RECOVERED OUTPUT STREAMS</div>
+        <sc-for list="{{ streams }}" as="s" hint-placeholder-count="5">
+          <div style="display: flex; align-items: baseline; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(246,244,240,0.12);">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #94A320; min-width: 44px;">{{ s.code }}</div>
+            <div>
+              <div style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em;">{{ s.name }}</div>
+              <div style="font-size: 14px; line-height: 1.5; color: rgba(246,244,240,0.58); padding-top: 5px; max-width: 38ch;">{{ s.note }}</div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.7; color: rgba(246,244,240,0.42); padding-top: 20px;">Process described from published company material. Stream-level yields and specifications to be confirmed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="technical" style="max-width: 1480px; margin: 0 auto; padding: clamp(80px, 12vw, 160px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">05 / TECHNICAL CREDIBILITY</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Engineered for consistency.</h2>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; padding-top: clamp(32px, 4vw, 52px);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #94A320;">GRADE K-C5400</div>
+    <div style="font-size: 15px; color: #6C6E73;">Premium Black Masterbatch · figures below are grade-specific, not company-wide</div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-left: -1px; margin-top: 28px; border-top: 1px solid rgba(23,24,27,0.12);">
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px 28px 0;">
+      <div style="font-size: clamp(44px, 5.4vw, 76px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 600;">40%</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 14px;">CARBON CONCENTRATION</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px;">
+      <div style="font-size: clamp(44px, 5.4vw, 76px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 600;">300°C</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 14px;">HEAT STABILITY</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px;">
+      <div style="font-size: clamp(44px, 5.4vw, 76px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 600;">3–5</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 14px;">MFI, g/10 MIN</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px;">
+      <div style="font-size: clamp(44px, 5.4vw, 76px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 600;">1.20–1.25</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 14px;">DENSITY, g/cc</div>
+    </div>
+  </div>
+  <button onClick="{{ toggleSpec }}" style="background: none; border: 0; border-bottom: 1px solid rgba(23,24,27,0.28); padding: 16px 0 8px; margin-top: 8px; font-size: 14px; font-weight: 600; color: #17181B; cursor: pointer; display: flex; align-items: center; gap: 10px;" style-hover="border-color: #94A320;">
+    {{ specLabel }} <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">{{ specCaret }}</span>
+  </button>
+  <sc-if value="{{ specOpen }}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 5vw, 72px); padding-top: 36px;">
+      <div style="overflow-x: auto;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px;">SPECIFICATION</div>
+        <sc-for list="{{ specRows }}" as="row" hint-placeholder-count="8">
+          <div style="display: flex; justify-content: space-between; gap: 24px; padding: 13px 0; border-top: 1px solid rgba(23,24,27,0.12); font-size: 15px;">
+            <div style="color: #6C6E73;">{{ row.k }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; color: #17181B; text-align: right;">{{ row.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px;">PERFORMANCE</div>
+        <sc-for list="{{ perf }}" as="p" hint-placeholder-count="5">
+          <div style="padding: 13px 0; border-top: 1px solid rgba(23,24,27,0.12); font-size: 15px;">{{ p }}</div>
+        </sc-for>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding: 30px 0 12px;">APPLICATIONS</div>
+        <div style="font-size: 15px; color: #3A3C41;">Film · Injection Moulding · Blow Moulding · Roto Moulding</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 32px;">
+          <a href="#contact" style="font-size: 13px; font-weight: 600; color: #F6F4F0; background: #17181B; padding: 14px 22px;" style-hover="background: #94A320;">Download TDS</a>
+          <a href="#contact" style="font-size: 13px; font-weight: 600; color: #17181B; padding: 14px 22px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B;">Request a Sample</a>
+          <a href="#contact" style="font-size: 13px; font-weight: 600; color: #17181B; padding: 14px 22px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B;">Talk to Technical Team</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</section>
+
+<section id="explorer" style="max-width: 1480px; margin: 0 auto; padding: clamp(80px, 12vw, 160px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">06 / MATERIALS LIBRARY</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Find the grade for your process.</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: minmax(260px, 0.62fr) minmax(300px, 1.38fr); gap: clamp(28px, 5vw, 72px); padding-top: clamp(32px, 4vw, 52px);">
+    <div>
+      <sc-for list="{{ facets }}" as="facet" hint-placeholder-count="4">
+        <div style="padding-bottom: 28px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">{{ facet.label }}</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 14px;">
+            <sc-for list="{{ facet.options }}" as="opt" hint-placeholder-count="6">
+              <button onClick="{{ opt.toggle }}" style="cursor: pointer; font-size: 13px; padding: 8px 13px; border: 1px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; transition: all 140ms;" style-hover="border-color: #17181B;">{{ opt.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <button onClick="{{ clearFilters }}" style="background: none; border: 0; padding: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #94A320; cursor: pointer;">CLEAR ALL FILTERS</button>
+    </div>
+    <div style="min-width: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73;">RESULTS</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #17181B;">{{ resultCount }}</div>
+      </div>
+      <sc-for list="{{ results }}" as="r" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; padding: 26px 0; border-bottom: 1px solid rgba(23,24,27,0.12);" style-hover="background: rgba(23,24,27,0.03);">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">{{ r.family }}</div>
+            <a href="{{ r.href }}" style="display: block; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.03em; font-weight: 600; padding-top: 8px; color: #17181B;" style-hover="color: #94A320;">{{ r.name }}</a>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73; padding-top: 10px;">{{ r.spec }}</div>
+          </div>
+          <div>
+            <div style="font-size: 15px; line-height: 1.55; color: #3A3C41;">{{ r.desc }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6C6E73; padding-top: 12px;">{{ r.appLine }}</div>
+            <div style="display: flex; gap: 18px; padding-top: 16px;">
+              <a href="{{ r.href }}" style="font-size: 13px; font-weight: 600;">Technical page →</a>
+              <a href="#contact" style="font-size: 13px; font-weight: 600;">Request Sample →</a>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 48px 0; font-size: 17px; color: #6C6E73;">No grade in the published library matches this combination. <a href="#contact">Talk to the technical team</a> about a custom formulation.</div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section id="scale" style="max-width: 1480px; margin: 0 auto; padding: clamp(80px, 12vw, 160px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 18px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">07 / SCALE</div>
+    <h2 style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 0 auto;">Circularity, measured.</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-left: -1px; border-top: 1px solid rgba(23,24,27,0.12); margin-top: clamp(28px, 4vw, 48px);">
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px 32px 0;">
+      <div style="font-size: clamp(48px, 6vw, 88px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600;">15M</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6;">END-OF-LIFE TYRES<br />COLLECTED ANNUALLY*</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px;">
+      <div style="font-size: clamp(48px, 6vw, 88px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600;">36,000<span style="font-size: 0.4em; letter-spacing: -0.02em;"> t</span></div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6;">ANNUAL TYRE PYROLYSIS<br />OIL PRODUCTION*</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px;">
+      <div style="font-size: clamp(48px, 6vw, 88px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600;">85%</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6;">GHG REDUCTION VS. VIRGIN<br />CARBON BLACK PRODUCTION*</div>
+    </div>
+    <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px;">
+      <div style="font-size: clamp(48px, 6vw, 88px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600;">Zero</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6;">LANDFILL — ALL TYRES<br />COLLECTED ARE RECYCLED*</div>
+    </div>
+  </div>
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.7; color: #6C6E73; padding-top: 20px; max-width: 76ch;">* Figures as published by the company on finstercarbon.com. Company-stated; not independently verified here. Supporting methodology, LCA and certification documents to be attached.</div>
+</section>
+
+<section id="about" style="max-width: 1480px; margin: 0 auto; padding: clamp(80px, 12vw, 160px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 6vw, 96px); align-items: start;">
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">08 / ABOUT</div>
+      <h2 style="font-size: clamp(30px, 4.2vw, 60px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 24px 0 0; max-width: 22ch;">Building better materials through experience, engineering and circularity.</h2>
+    </div>
+    <div style="padding-top: 8px;">
+      <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: #3A3C41; margin: 0; max-width: 50ch;">Two operating identities sit under the group. Masterbatch Technologies LLP, established in 2009, manufactures and exports black carbon powder, LDPE, LLDPE and virgin LLDPE masterbatch, UV stabilizer masterbatch and plastic black masterbatch. Finster Black Pvt. Ltd. operates the tyre-recovery and pyrolysis platform in Raigad, Maharashtra, producing recovered carbon black, tyre pyrolysis oil and crumb rubber.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; padding-top: 36px;">
+        <div style="border-top: 1px solid rgba(23,24,27,0.12); padding-top: 14px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73;">QUALITY SYSTEM</div>
+          <div style="font-size: 15px; padding-top: 8px;">ISO 9001:2015 certified</div>
+        </div>
+        <div style="border-top: 1px solid rgba(23,24,27,0.12); padding-top: 14px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73;">INDIA OPERATIONS</div>
+          <div style="font-size: 15px; padding-top: 8px;">Established 2009</div>
+        </div>
+        <div style="border-top: 1px solid rgba(23,24,27,0.12); padding-top: 14px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73;">DOCUMENTATION</div>
+          <div style="font-size: 15px; padding-top: 8px;">TDS · SDS · REACH <span style="color: #6C6E73;">[to be confirmed]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background: #17181B; color: #F6F4F0; margin-top: clamp(80px, 12vw, 160px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(72px, 10vw, 140px) clamp(20px, 4vw, 64px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: clamp(32px, 6vw, 96px); align-items: start;">
+      <div>
+        <h2 style="font-size: clamp(32px, 4.8vw, 68px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 20ch;">Let's engineer the right material for your application.</h2>
+        <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: rgba(246,244,240,0.66); margin: 24px 0 0; max-width: 46ch;">Talk to our technical team about specifications, applications, samples and custom material requirements.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 40px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(246,244,240,0.5);">DIRECT</div>
+          <a href="tel:919967517738" style="font-size: 17px; color: #F6F4F0;">+91 99675 17738</a>
+          <a href="mailto:bp@finstercarbon.com" style="font-size: 17px; color: #F6F4F0;">bp@finstercarbon.com</a>
+        </div>
+      </div>
+      <div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 32px;">
+          <sc-for list="{{ intents }}" as="i" hint-placeholder-count="4">
+            <button onClick="{{ i.select }}" style="cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 16px; border: 1px solid {{ i.border }}; background: {{ i.bg }}; color: {{ i.color }}; transition: all 140ms;">{{ i.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 32px;">
+          <sc-for list="{{ fields }}" as="f" hint-placeholder-count="10">
+            <label style="display: block; padding-bottom: 22px;">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 8px;">{{ f.label }}</span>
+              <input value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" style="width: 100%; box-sizing: border-box; background: none; border: 0; border-bottom: 1px solid rgba(246,244,240,0.24); color: #F6F4F0; font-size: 16px; padding: 8px 0; outline: none;" style-focus="border-color: #94A320;" />
+            </label>
+          </sc-for>
+        </div>
+        <label style="display: block; padding-bottom: 28px;">
+          <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 8px;">MESSAGE</span>
+          <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="3" placeholder="Application, polymer, annual requirement" style="width: 100%; box-sizing: border-box; background: none; border: 0; border-bottom: 1px solid rgba(246,244,240,0.24); color: #F6F4F0; font-size: 16px; padding: 8px 0; outline: none; resize: vertical;" style-focus="border-color: #94A320;"></textarea>
+        </label>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
+          <button onClick="{{ submit }}" style="cursor: pointer; border: 0; font-size: 14px; font-weight: 600; color: #17181B; background: #F6F4F0; padding: 17px 30px;" style-hover="background: #94A320; color: #F6F4F0;">{{ submitLabel }}</button>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">{{ statusText }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;initialApplication&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;plastics&quot;,&quot;rubber&quot;,&quot;automotive&quot;,&quot;pipes&quot;,&quot;films&quot;,&quot;agriculture&quot;,&quot;tyres&quot;,&quot;coatings&quot;,&quot;industrial&quot;],&quot;default&quot;:&quot;plastics&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;specsExpanded&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;showSourceNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+const APPS = [
+  { id: "plastics", name: "Plastics", desc: "Black masterbatch and carbon materials engineered for consistent dispersion, opacity, UV protection and polymer compatibility across extrusion and moulding lines.", products: ["LLDPE Masterbatch", "LDPE Masterbatch", "Carbon Black", "UV Stabilizer Masterbatch"], uses: ["Film", "Injection", "Blow moulding", "Roto moulding", "Sheet"], cta: "Explore Plastics Applications" },
+  { id: "rubber", name: "Rubber", desc: "Carbon black and recovered carbon black as reinforcing and semi-reinforcing fillers, improving tensile strength, abrasion resistance and overall durability in rubber compounds.", products: ["Carbon Black N330 / N550 / N660", "Recovered Carbon Black", "Crumb Rubber"], uses: ["Tubes", "Conveyor belts", "Rubber fenders", "Oil seals", "Gaskets", "Rubber profiles", "Moulded & extruded goods"], cta: "Explore Rubber Applications" },
+  { id: "automotive", name: "Automotive", desc: "Materials for rubber components and automotive plastics where colour consistency, thermal stability and UV performance are specified.", products: ["Black Masterbatch", "Carbon Black", "Recovered Carbon Black"], uses: ["Sealing systems", "Under-bonnet parts", "Interior components"], cta: "Explore Automotive Applications" },
+  { id: "pipes", name: "Pipes & Infrastructure", desc: "Black masterbatch and UV-stabilised formulations for durable polymer applications with long outdoor service life.", products: ["LLDPE Masterbatch", "UV Stabilizer Masterbatch", "Carbon Black"], uses: ["Pressure pipe", "Conduit", "Ducting"], cta: "Explore Pipe Applications" },
+  { id: "films", name: "Films", desc: "High-jetness, well-dispersed black concentrates for thin-gauge film where gel count and unmelts matter.", products: ["LDPE Masterbatch", "LLDPE Masterbatch", "Virgin LLDPE Masterbatch"], uses: ["Blown film", "Cast film", "Liners", "Lamination"], cta: "Explore Film Applications" },
+  { id: "agriculture", name: "Agriculture", desc: "Film, pipe and other agricultural polymer applications requiring UV resistance through long exposure cycles.", products: ["UV Stabilizer Masterbatch", "LLDPE Masterbatch"], uses: ["Mulch film", "Greenhouse film", "Drip irrigation"], cta: "Explore Agriculture Applications" },
+  { id: "tyres", name: "Tyres", desc: "Carbon black and recovered carbon black for tyre compounds, with crumb rubber and pyrolysis oil closing the loop back to tyre manufacturing.", products: ["Carbon Black", "Recovered Carbon Black", "Crumb Rubber", "Tyre Pyrolysis Oil"], uses: ["Tyres", "Retreading", "Compound blending"], cta: "Explore Tyre Applications" },
+  { id: "coatings", name: "Paints & Coatings", desc: "Carbon-based pigments and recovered carbon black for coatings and industrial formulations.", products: ["Carbon Black", "Black Carbon Powder", "Recovered Carbon Black"], uses: ["Industrial coatings", "Primers", "Inks"], cta: "Explore Coatings Applications" },
+  { id: "industrial", name: "Industrial Applications", desc: "Pyrolysis oil as an industrial energy and feedstock route, alongside carbon materials for general industrial formulation.", products: ["Tyre Pyrolysis Oil", "Carbon Black", "Crumb Rubber"], uses: ["Industrial furnace fuel", "Feedstock for carbon black", "Marine fuel", "Refinery feedstock", "Petrochemical complexes"], cta: "Explore Industrial Applications" },
+];
+
+const STEPS = [
+  { num: "01", title: "End-of-life tyres", body: "Scrap tyres enter the recovery network through the group's own collection fleet." },
+  { num: "02", title: "Collection & sorting", body: "Tyres are graded and separated by construction and condition before processing." },
+  { num: "03", title: "Mechanical processing", body: "Shredding and granulation prepare feedstock and produce crumb rubber." },
+  { num: "04", title: "Pyrolysis", body: "Thermal decomposition in the absence of oxygen separates the material streams." },
+  { num: "05", title: "Recovered materials", body: "Recovered carbon black, pyrolysis oil and other streams are drawn off and refined." },
+  { num: "06", title: "Industrial applications", body: "Materials return to rubber, plastics and masterbatch manufacturing." },
+];
+
+const STREAMS = [
+  { code: "rCB", name: "Recovered Carbon Black", note: "Semi-reinforcing filler for rubber, plastics, paints and coatings. Consistent particle size distribution." },
+  { code: "TPO", name: "Tyre Pyrolysis Oil", note: "High-energy liquid fuel and refinery / carbon black feedstock." },
+  { code: "CR", name: "Crumb Rubber", note: "Graded rubber granulate for compounding and surfacing applications." },
+  { code: "Fe", name: "Recovered Steel", note: "[Stream and specification to be confirmed — not listed in published product range.]" },
+  { code: "Gas", name: "Syngas", note: "[Stream to be confirmed — process gas utilisation not published.]" },
+];
+
+const PRODUCTS = [
+  { name: "N330", family: "CARBON BLACK", material: "Carbon Black", polymers: ["Rubber"], apps: ["Rubber", "Automotive", "Industrial"], reqs: ["High Jetness", "Dispersion"], spec: "[Spec to be confirmed]", desc: "Furnace-grade carbon black for reinforcing rubber compounds; also specified as the pigment in high-concentration black masterbatch.", appLine: "RUBBER · AUTOMOTIVE · MASTERBATCH FEED" },
+  { name: "N550", family: "CARBON BLACK", material: "Carbon Black", polymers: ["Rubber"], apps: ["Rubber", "Industrial"], reqs: ["Dispersion", "Opacity"], spec: "[Spec to be confirmed]", desc: "Semi-reinforcing furnace black for extruded and moulded rubber goods.", appLine: "RUBBER · EXTRUSION · MOULDED GOODS" },
+  { name: "N660", family: "CARBON BLACK", material: "Carbon Black", polymers: ["Rubber"], apps: ["Rubber", "Industrial"], reqs: ["Dispersion"], spec: "[Spec to be confirmed]", desc: "Semi-reinforcing grade used where lower structure and easier processing are required.", appLine: "RUBBER · PROFILES · GENERAL COMPOUNDS" },
+  { name: "Industrial Carbon Black", family: "CARBON BLACK", material: "Carbon Black", polymers: ["Rubber", "PE"], apps: ["Industrial", "Rubber"], reqs: ["Opacity"], spec: "[Grades to be confirmed]", desc: "General industrial carbon black supplied against application requirements.", appLine: "INDUSTRIAL FORMULATION" },
+  { name: "Black Carbon Powder", family: "CARBON BLACK", material: "Carbon Black", polymers: ["PE", "Rubber"], apps: ["Industrial", "Rubber"], reqs: ["Opacity", "High Jetness"], spec: "[Spec to be confirmed]", desc: "Powder carbon black listed in the group's exported product range.", appLine: "PIGMENT · FILLER · COMPOUNDING" },
+  { name: "K-C5400", family: "MASTERBATCH", material: "Masterbatch", polymers: ["LLDPE", "PE"], apps: ["Film", "Injection Moulding", "Blow Moulding"], reqs: ["High Jetness", "Dispersion", "Thermal Stability", "UV Stability", "Polymer Compatibility"], spec: "40% carbon · N330 · virgin LLDPE carrier", desc: "High-concentration black masterbatch engineered for consistent dispersion in demanding polymer-processing applications.", appLine: "FILM · INJECTION · BLOW · ROTO MOULDING" },
+  { name: "LLDPE Masterbatch", family: "MASTERBATCH", material: "Masterbatch", polymers: ["LLDPE"], apps: ["Film", "Injection Moulding", "Pipes"], reqs: ["Dispersion", "Polymer Compatibility"], spec: "15–50% carbon black in carrier resin", desc: "Black concentrate on an LLDPE carrier for film and general polymer processing.", appLine: "FILM · PIPE · INJECTION" },
+  { name: "LDPE Masterbatch", family: "MASTERBATCH", material: "Masterbatch", polymers: ["LDPE"], apps: ["Film", "Blow Moulding"], reqs: ["Dispersion", "Opacity"], spec: "15–50% carbon black in carrier resin", desc: "Black concentrate on an LDPE carrier, suited to blown film and blow moulding.", appLine: "FILM · BLOW MOULDING" },
+  { name: "Virgin LLDPE Masterbatch", family: "MASTERBATCH", material: "Masterbatch", polymers: ["LLDPE"], apps: ["Film", "Injection Moulding"], reqs: ["High Jetness", "Dispersion", "Polymer Compatibility"], spec: "Virgin carrier resin", desc: "Fully virgin-carrier concentrate for applications where recycled carrier content is not permitted.", appLine: "FILM · TECHNICAL PARTS" },
+  { name: "Plastic Black Masterbatch", family: "MASTERBATCH", material: "Masterbatch", polymers: ["PE", "ABS", "PVC"], apps: ["Injection Moulding", "Industrial"], reqs: ["Opacity", "Polymer Compatibility"], spec: "[Loading to be confirmed]", desc: "Black concentrate for general plastics processing across several base polymers.", appLine: "INJECTION · GENERAL PLASTICS" },
+  { name: "UV Stabilizer Masterbatch", family: "Additives", material: "Additives", polymers: ["LLDPE", "LDPE", "PE"], apps: ["Agriculture", "Pipes", "Film"], reqs: ["UV Stability", "Thermal Stability"], spec: "[Additive package to be confirmed]", desc: "Additive concentrate for polymer applications with extended outdoor exposure.", appLine: "AGRICULTURE FILM · PIPE · OUTDOOR" },
+  { name: "Recovered Carbon Black", family: "CIRCULAR MATERIALS", material: "Recovered Carbon Black", polymers: ["Rubber", "PE"], apps: ["Rubber", "Automotive", "Industrial"], reqs: ["Dispersion", "Recycled Content"], spec: "ISO 9001:2015 · consistent particle size distribution", desc: "Sustainable output from the pyrolysis of end-of-life tyres; a lower-footprint alternative to petroleum-based carbon black for reinforcing rubber, plastics and coatings.", appLine: "TYRES · CONVEYOR BELTS · SEALS · COATINGS" },
+  { name: "Tyre Pyrolysis Oil", family: "CIRCULAR MATERIALS", material: "Pyrolysis Oil", polymers: ["Rubber"], apps: ["Industrial"], reqs: ["Recycled Content"], spec: "[Calorific value to be confirmed]", desc: "High-energy liquid fuel derived from the thermal decomposition of waste tyres, used as an industrial fuel and as feedstock.", appLine: "FURNACE FUEL · CARBON BLACK FEED · MARINE · REFINERY" },
+  { name: "Crumb Rubber", family: "CIRCULAR MATERIALS", material: "Crumb Rubber", polymers: ["Rubber"], apps: ["Rubber", "Industrial"], reqs: ["Recycled Content"], spec: "[Mesh sizes to be confirmed]", desc: "Graded rubber granulate recovered from mechanical tyre processing.", appLine: "COMPOUNDING · SURFACING · MOULDED GOODS" },
+  { name: "Recovered Steel", family: "CIRCULAR MATERIALS", material: "Recovered Carbon Black", polymers: ["Rubber"], apps: ["Industrial"], reqs: ["Recycled Content"], spec: "[Stream to be confirmed]", desc: "Steel recovered during tyre processing. Not listed in the published product range — confirm availability before publication.", appLine: "SCRAP METAL RECOVERY" },
+];
+
+const FACETS = [
+  { key: "material", label: "MATERIAL", options: ["Carbon Black", "Masterbatch", "Additives", "Recovered Carbon Black", "Crumb Rubber", "Pyrolysis Oil"] },
+  { key: "polymer", label: "POLYMER / BASE", options: ["LDPE", "LLDPE", "PE", "ABS", "PVC", "Rubber"] },
+  { key: "application", label: "APPLICATION", options: ["Film", "Injection Moulding", "Blow Moulding", "Pipes", "Automotive", "Agriculture", "Rubber", "Industrial"] },
+  { key: "requirement", label: "PERFORMANCE REQUIREMENT", options: ["High Jetness", "UV Stability", "Dispersion", "Thermal Stability", "Opacity", "Polymer Compatibility", "Recycled Content"] },
+];
+
+const FIELD_DEFS = [
+  { key: "name", label: "NAME", placeholder: "Full name" },
+  { key: "company", label: "COMPANY", placeholder: "Company name" },
+  { key: "email", label: "EMAIL", placeholder: "you@company.com" },
+  { key: "phone", label: "PHONE", placeholder: "+91" },
+  { key: "country", label: "COUNTRY", placeholder: "Country" },
+  { key: "industry", label: "INDUSTRY", placeholder: "e.g. Films" },
+  { key: "product", label: "PRODUCT OF INTEREST", placeholder: "e.g. K-C5400" },
+  { key: "polymer", label: "POLYMER / MATERIAL", placeholder: "e.g. LLDPE" },
+  { key: "volume", label: "ANNUAL REQUIREMENT", placeholder: "e.g. 240 t" },
+];
+
+const INTENTS = ["Request a Sample", "Technical Information", "Talk to an Expert", "Request a Quote"];
+
+class Component extends DCLogic {
+  state = {
+    app: null,
+    specOpen: false,
+    filters: { material: [], polymer: [], application: [], requirement: [] },
+    progress: 0,
+    intent: "Request a Sample",
+    form: {},
+    message: "",
+    submitted: false,
+    menu: false,
+  };
+
+  techRef = React.createRef();
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const el = this.techRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const span = r.height * 0.72;
+      const p = Math.max(0, Math.min(1, (window.innerHeight * 0.78 - r.top) / span));
+      if (Math.abs(p - this.state.progress) > 0.004) this.setState({ progress: p });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() { window.removeEventListener("scroll", this.onScroll); }
+
+  toggleFacet(key, val) {
+    this.setState(s => {
+      const cur = s.filters[key];
+      const next = cur.includes(val) ? cur.filter(v => v !== val) : cur.concat(val);
+      return { filters: Object.assign({}, s.filters, { [key]: next }) };
+    });
+  }
+
+  renderVals() {
+    const activeId = this.state.app || this.props.initialApplication || "plastics";
+    const apps = APPS.map((a, i) => ({
+      id: a.id, name: a.name, num: String(i + 1).padStart(2, "0"),
+      color: a.id === activeId ? "#17181B" : "#8C8E93",
+      weight: a.id === activeId ? 600 : 400,
+      select: () => this.setState({ app: a.id }),
+    }));
+    const activeRaw = APPS.find(a => a.id === activeId) || APPS[0];
+    const activeApp = Object.assign({}, activeRaw, { href: "Applications.dc.html#" + activeRaw.id });
+    const slugOf = name => {
+      const K = window.KARBN;
+      const p = K && K.PRODUCTS.find(x => x.name === name);
+      return p ? "Product.dc.html#" + p.slug : "Products.dc.html";
+    };
+
+    const f = this.state.filters;
+    const results = PRODUCTS.filter(p =>
+      (!f.material.length || f.material.includes(p.material)) &&
+      (!f.polymer.length || f.polymer.some(v => p.polymers.includes(v))) &&
+      (!f.application.length || f.application.some(v => p.apps.includes(v))) &&
+      (!f.requirement.length || f.requirement.some(v => p.reqs.includes(v)))
+    );
+
+    const facets = FACETS.map(fc => ({
+      label: fc.label,
+      options: fc.options.map(o => {
+        const on = f[fc.key].includes(o);
+        return {
+          label: o, toggle: () => this.toggleFacet(fc.key, o),
+          bg: on ? "#17181B" : "transparent",
+          color: on ? "#F6F4F0" : "#3A3C41",
+          border: on ? "#17181B" : "rgba(23,24,27,0.2)",
+        };
+      }),
+    }));
+
+    const prog = this.state.progress;
+    const steps = STEPS.map((s, i) => {
+      const on = prog >= (i + 0.35) / STEPS.length;
+      return {
+        num: s.num, title: s.title, body: s.body,
+        dot: on ? "#94A320" : "rgba(246,244,240,0.28)",
+        numColor: on ? "#94A320" : "rgba(246,244,240,0.45)",
+        titleColor: on ? "#F6F4F0" : "rgba(246,244,240,0.55)",
+      };
+    });
+
+    const specOpen = this.state.specOpen || this.props.specsExpanded === true;
+
+    return {
+      apps, activeApp, facets, steps,
+      results: results.map(p => Object.assign({}, p, { href: slugOf(p.name) })),
+      streams: STREAMS,
+      techRef: this.techRef,
+      resultCount: results.length + (results.length === 1 ? " grade" : " grades"),
+      noResults: results.length === 0,
+      progressPct: Math.round(prog * 100) + "%",
+      menuDisplay: this.state.menu ? "grid" : "none",
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      specOpen,
+      specLabel: specOpen ? "Hide technical details" : "View technical details",
+      specCaret: specOpen ? "▲" : "▼",
+      toggleSpec: () => this.setState({ specOpen: !specOpen }),
+      specRows: [
+        { k: "Carrier", v: "Virgin LLDPE" },
+        { k: "Carbon black", v: "N330" },
+        { k: "Carbon content", v: "40%" },
+        { k: "MFI", v: "3–5 g/10 min" },
+        { k: "Density", v: "1.20–1.25 g/cc" },
+        { k: "Heat stability", v: "300°C" },
+        { k: "Form", v: "Granules" },
+        { k: "Packaging", v: "25 kg" },
+      ],
+      perf: ["High jetness", "Consistent dispersion", "Thermal stability", "UV resistance", "Polymer compatibility"],
+      intents: INTENTS.map(l => ({
+        label: l,
+        select: () => this.setState({ intent: l, submitted: false }),
+        bg: this.state.intent === l ? "#F6F4F0" : "transparent",
+        color: this.state.intent === l ? "#17181B" : "rgba(246,244,240,0.8)",
+        border: this.state.intent === l ? "#F6F4F0" : "rgba(246,244,240,0.3)",
+      })),
+      fields: FIELD_DEFS.map(d => ({
+        label: d.label, placeholder: d.placeholder,
+        value: this.state.form[d.key] || "",
+        onChange: e => this.setState(s => ({ form: Object.assign({}, s.form, { [d.key]: e.target.value }), submitted: false })),
+      })),
+      message: this.state.message,
+      onMessage: e => this.setState({ message: e.target.value, submitted: false }),
+      submitLabel: this.state.intent,
+      submit: () => this.setState({ submitted: true }),
+      statusText: this.state.submitted ? "Enquiry captured — a technical contact will respond within one working day." : "",
+      showSourceNotes: this.props.showSourceNotes !== false,
+    };
+  }
+}
+</script>
+</body>
+</html>

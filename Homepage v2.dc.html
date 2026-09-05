@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<script src="materials.js"></script>
+<script src="worldmap.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT"
+  }
+}
+</script>
+<script type="module" src="tyre3d.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  /* Layout breakpoints live in CSS: a JS-measured innerWidth is wrong on first paint in an
+     embedded frame. JS keeps only the open/closed toggles, which are real state. */
+  .k-nav, .k-inline { display: flex; }
+  .k-burger { display: none; }
+  @media (max-width: 1079px) {
+    .k-nav { display: none; }
+    .k-inline { display: none; }
+    .k-burger { display: flex; }
+    .k-mega { display: none !important; }
+  }
+  @media (min-width: 1080px) { .k-panel { display: none !important; } }
+  @keyframes scrollcue { 0%, 100% { transform: scaleY(0.3); opacity: 0.45; } 50% { transform: scaleY(1); opacity: 1; } }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+  @keyframes riseA { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes riseB { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes cue { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(7px); opacity: 1; } }
+</style>
+</helmet>
+<div style="background: #F6F4F0; overflow-x: clip;">
+<header style="position: sticky; top: 0; z-index: 80; background: rgba(246,245,241,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(22,23,26,0.12);">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 2.6vw, 40px); display: flex; align-items: center; gap: clamp(12px, 2vw, 32px);">
+    <a href="#top" style="display: block; flex: 0 0 auto;">
+      <img src="images/finster-logo.png" alt="Finster Carbon" style="display: block; height: clamp(38px, 3.2vw, 46px); width: auto;" />
+    </a>
+    <nav class="k-nav" style="align-items: center; gap: clamp(10px, 1.9vw, 30px); flex: 1 1 auto; justify-content: center; min-width: 0;">
+      <div style="position: static;" onMouseEnter="{{ openMenu }}" onMouseLeave="{{ closeMenu }}">
+        <a href="Products.dc.html" style="display: flex; align-items: center; gap: 6px; font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">Products <span style="font-size: 9px; color: #8B8B84;">▾</span></a>
+        <div class="k-mega" style="position: absolute; top: 100%; left: clamp(16px, 2.6vw, 40px); right: clamp(16px, 2.6vw, 40px); max-width: 760px; background: #FFFDF9; border: 1px solid rgba(22,23,26,0.12); box-shadow: 0 24px 48px -24px rgba(22,23,26,0.22); padding: 28px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px; display: {{ menuDisplay }};">
+          <div>
+            <div style="font-size: 10px; letter-spacing: 0.18em; color: #94A320; padding-bottom: 12px; border-bottom: 1px solid rgba(22,23,26,0.12);">CARBON MATERIALS</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#n330" style="font-size: 14px; color: #16171A;">N330</a>
+              <a href="Product.dc.html#n550" style="font-size: 14px; color: #16171A;">N550</a>
+              <a href="Product.dc.html#n660" style="font-size: 14px; color: #16171A;">N660</a>
+              <a href="Product.dc.html#industrial-carbon-black" style="font-size: 14px; color: #16171A;">Industrial Carbon Black</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10px; letter-spacing: 0.18em; color: #94A320; padding-bottom: 12px; border-bottom: 1px solid rgba(22,23,26,0.12);">MASTERBATCH</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#k-c5400" style="font-size: 14px; color: #16171A;">K-C5400</a>
+              <a href="Product.dc.html#lldpe-masterbatch" style="font-size: 14px; color: #16171A;">LLDPE Masterbatch</a>
+              <a href="Product.dc.html#ldpe-masterbatch" style="font-size: 14px; color: #16171A;">LDPE Masterbatch</a>
+              <a href="Product.dc.html#uv-stabilizer-masterbatch" style="font-size: 14px; color: #16171A;">UV Stabilizer Masterbatch</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10px; letter-spacing: 0.18em; color: #94A320; padding-bottom: 12px; border-bottom: 1px solid rgba(22,23,26,0.12);">CIRCULAR MATERIALS</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px;">
+              <a href="Product.dc.html#recovered-carbon-black" style="font-size: 14px; color: #16171A;">Recovered Carbon Black</a>
+              <a href="Product.dc.html#tyre-pyrolysis-oil" style="font-size: 14px; color: #16171A;">Tyre Pyrolysis Oil</a>
+              <a href="Product.dc.html#crumb-rubber" style="font-size: 14px; color: #16171A;">Crumb Rubber</a>
+              <a href="Products.dc.html#library" style="font-size: 14px; color: #94A320;">Materials Library →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="Applications.dc.html" style="font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">Applications</a>
+      <a href="Technology.dc.html" style="font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">Technology</a>
+      <a href="Sustainability.dc.html" style="font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">Sustainability</a>
+      <a href="About.dc.html" style="font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">About</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: clamp(10px, 1.5vw, 22px); flex: 0 0 auto; margin-left: auto;">
+      <a href="Contact.dc.html" class="k-inline" style="font-size: clamp(13px, 1.05vw, 16px); color: #16171A; white-space: nowrap;" style-hover="color: #94A320;">Contact</a>
+      <span class="k-inline" style="flex: 0 0 auto; width: 1px; height: 28px; background: rgba(22,23,26,0.18);"></span>
+      <a href="Contact.dc.html" style="display: flex; align-items: center; gap: clamp(10px, 1.2vw, 20px); font-size: clamp(13px, 1.05vw, 16px); color: #F6F5F1; background: #16171A; padding: 13px clamp(14px, 1.6vw, 22px); white-space: nowrap;" style-hover="background: #94A320; color: #16171A;">Talk to an Expert <span>→</span></a>
+      <button onClick="{{ toggleNav }}" aria-label="Menu" class="k-burger" style="flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 5px; width: 48px; height: 48px; padding: 0 13px; box-sizing: border-box; background: none; border: 1px solid rgba(22,23,26,0.24); cursor: pointer;">
+        <span style="display: block; height: 1.5px; background: #16171A;"></span>
+        <span style="display: block; height: 1.5px; background: #16171A;"></span>
+        <span style="display: block; height: 1.5px; background: #16171A;"></span>
+      </button>
+    </div>
+  </div>
+  <div class="k-panel" style="display: {{ mobilePanelDisplay }}; border-top: 1px solid rgba(22,23,26,0.12); background: #F6F5F1;">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 8px clamp(16px, 2.6vw, 40px) 20px; flex-direction: column; display: flex;">
+      <sc-for list="{{ mobileLinks }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="font-size: 18px; color: #16171A; padding: 15px 0; border-bottom: 1px solid rgba(22,23,26,0.1);" style-hover="color: #94A320;">{{ l.label }}</a>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<section id="top" style="position: relative; background: #F6F5F1; color: #16171A; overflow: hidden; scroll-margin-top: 110px;">
+  <div style="position: absolute; top: 0; right: 0; bottom: 0; width: 62%;">
+    <div style="position: absolute; inset: 0; background: #94A320; clip-path: polygon(45% 0, 100% 0, 100% 100%, 3% 100%);"></div>
+    <div style="position: absolute; inset: 0; transform: translateX(3px); clip-path: polygon(45% 0, 100% 0, 100% 100%, 3% 100%); background: #101114;">
+      <image-slot id="v2-hero-split" shape="rect" fit="cover" src="images/hero-materials.png" placeholder="Drop a high-resolution macro here — carbon black powder and black masterbatch pellets"></image-slot>
+    </div>
+  </div>
+  <div style="position: absolute; left: 47.6%; top: 70%; transform: translate(-50%, -50%); width: 15px; height: 15px; border-radius: 50%; background: #94A320; border: 3px solid #F6F5F1; box-shadow: 0 0 0 1px rgba(148,163,32,0.5); pointer-events: none;"></div>
+  <div style="position: relative; max-width: 1440px; width: 100%; margin: 0 auto; padding: clamp(48px, 8vh, 96px) clamp(18px, 3vw, 40px) 0; box-sizing: border-box; pointer-events: none;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.2em; color: #94A320;">ADVANCED MATERIALS &amp; CIRCULAR MANUFACTURING</div>
+    <div style="width: 78px; height: 2px; background: #94A320; margin-top: 16px;"></div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #6C6E73; padding-top: 18px;">FOUNDED 1957 — USA &nbsp;·&nbsp; 2009 — INDIA</div>
+    <h1 style="font-size: clamp(40px, 5.8vw, 82px); line-height: 1.03; letter-spacing: -0.035em; font-weight: 700; margin: 30px 0 0; max-width: 13ch;">Materials that move industry <span style="color: #94A320;">forward.</span></h1>
+    <p style="font-size: clamp(16px, 1.35vw, 20px); line-height: 1.55; color: #4A4A44; margin: 30px 0 0; max-width: 34ch;">Carbon black, masterbatch and circular materials engineered for modern manufacturing.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; padding-top: 34px; pointer-events: auto;">
+      <a href="Products.dc.html" style="display: flex; align-items: center; gap: 22px; font-size: 16px; color: #F6F5F1; background: #16171A; padding: 16px 24px;" style-hover="background: #94A320; color: #16171A;">Explore Materials <span>→</span></a>
+      <a href="#transformation" style="display: flex; align-items: center; gap: 22px; font-size: 16px; color: #16171A; background: #F6F5F1; border: 1px solid rgba(22,23,26,0.35); padding: 16px 24px;" style-hover="border-color: #16171A; background: #FFFFFF;">See the Recovery Loop <span>→</span></a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px; padding-top: clamp(26px, 4.5vh, 48px);">
+      <span style="display: block; width: 2px; height: 42px; background: linear-gradient(#94A320, rgba(148,163,32,0.08)); transform-origin: top; animation: scrollcue 2.4s ease-in-out infinite;"></span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; color: #6C6E73;">SCROLL TO EXPLORE</span>
+    </div>
+  </div>
+  <div style="position: relative; max-width: 1440px; margin: 0 auto; padding: clamp(44px, 7vw, 96px) clamp(18px, 3vw, 40px) clamp(18px, 2.4vw, 30px); box-sizing: border-box;">
+    <div style="background: #101114; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));">
+      <sc-for list="{{ chain }}" as="c" hint-placeholder-count="4">
+        <div style="display: flex; gap: 20px; align-items: flex-start; padding: clamp(24px, 2.6vw, 34px) clamp(18px, 2vw, 28px); border-left: 1px solid {{ c.divider }};">
+          <div style="flex: 0 0 auto; width: 44px; padding-top: 2px;">
+            <sc-if value="{{ c.isGrid }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: repeat(3, 9px); gap: 5px;">
+                <sc-for list="{{ c.dots }}" as="d" hint-placeholder-count="9">
+                  <span style="width: 9px; height: 9px; border: 1.5px solid #A8BB2E; border-radius: 50%;"></span>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ c.isShape }}" hint-placeholder-val="{{ true }}">
+              <span style="display: block; width: 40px; height: 40px; background: #A8BB2E; border-radius: {{ c.markRadius }}; clip-path: {{ c.markClip }}; position: relative;">
+                <span style="position: absolute; inset: 2px; background: #101114; border-radius: {{ c.markRadius }}; clip-path: {{ c.markClip }};"></span>
+              </span>
+            </sc-if>
+          </div>
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #A8BB2E;">{{ c.num }}</div>
+            <div style="font-size: 16px; font-weight: 700; letter-spacing: 0.03em; color: #F6F5F1; padding-top: 6px;">{{ c.name }}</div>
+            <p style="font-size: 14px; line-height: 1.55; color: #9C9C96; margin: 10px 0 0; max-width: 24ch;">{{ c.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="materials" style="max-width: 1480px; margin: 0 auto; padding: clamp(64px, 10vw, 150px) clamp(20px, 4vw, 64px) 0; scroll-margin-top: 110px;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">02 / MATERIALS</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: clamp(28px, 4vw, 48px);">
+    <div>
+      <sc-for list="{{ families }}" as="f" hint-placeholder-count="3">
+        <button onClick="{{ f.select }}" onMouseEnter="{{ f.select }}" style="display: block; width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid rgba(23,24,27,0.14); padding: clamp(18px, 2.4vw, 30px) 0; cursor: pointer;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: {{ f.numColor }}; transition: color 300ms;">{{ f.num }}</span>
+            <span style="font-size: clamp(28px, 4.4vw, 62px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; color: {{ f.color }}; transition: color 300ms;">{{ f.name }}</span>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73; padding: 12px 0 0 26px;">{{ f.grades }}</div>
+        </button>
+      </sc-for>
+      <div style="border-top: 1px solid rgba(23,24,27,0.14); padding-top: 22px;">
+        <p style="font-size: 16px; line-height: 1.6; color: #3A3C41; margin: 0; max-width: 46ch; animation: {{ riseAnim }} 500ms ease both;">{{ activeFamily.desc }}</p>
+        <a href="{{ activeFamily.href }}" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 22px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">Explore {{ activeFamily.name }} <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+      </div>
+    </div>
+    <div style="position: relative; background: #101114; min-height: min(64vh, 560px); overflow: hidden;">
+      <canvas data-karbn-cv="mat" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+      <div style="position: relative; padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; height: 100%; box-sizing: border-box; pointer-events: none;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">SPECIMEN — {{ activeFamily.specimen }}</div>
+        <div style="margin-top: auto; animation: {{ riseAnim }} 520ms ease both;">
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; padding-bottom: 18px;">
+            <sc-for list="{{ activeFamily.items }}" as="i" hint-placeholder-count="5">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(246,244,240,0.9); border: 1px solid rgba(246,244,240,0.24); padding: 6px 10px;">{{ i }}</div>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-left: -1px;">
+            <sc-for list="{{ activeFamily.props }}" as="p" hint-placeholder-count="3">
+              <div style="background: #101114; box-shadow: -1px 0 0 rgba(246,244,240,0.16); padding: 16px 14px 6px 0;">
+                <div style="font-size: clamp(20px, 2.2vw, 30px); letter-spacing: -0.03em; font-weight: 600; color: #F6F4F0;">{{ p.v }}</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(246,244,240,0.52); padding-top: 8px;">{{ p.l }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="applications" style="max-width: 1480px; margin: 0 auto; padding: clamp(64px, 10vw, 150px) clamp(20px, 4vw, 64px) 0; scroll-margin-top: 110px;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">03 / APPLICATIONS</div>
+  <h2 style="font-size: clamp(28px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 22px 0 0; max-width: 18ch;">Switch industry. The whole picture changes.</h2>
+  <div style="display: grid; grid-template-columns: minmax(200px, 0.5fr) minmax(300px, 1.4fr); gap: clamp(24px, 4vw, 56px); padding-top: clamp(28px, 4vw, 48px);">
+    <div style="display: flex; flex-direction: column;">
+      <sc-for list="{{ apps }}" as="a" hint-placeholder-count="9">
+        <button onClick="{{ a.select }}" onMouseEnter="{{ a.select }}" style="text-align: left; background: none; border: 0; border-top: 1px solid rgba(23,24,27,0.12); padding: 13px 0; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: clamp(15px, 1.5vw, 20px); letter-spacing: -0.02em; color: {{ a.color }}; font-weight: {{ a.weight }};">
+          <span style="width: {{ a.barW }}; height: 1px; background: #94A320; transition: width 300ms;"></span>{{ a.name }}
+        </button>
+      </sc-for>
+    </div>
+    <div>
+      <div style="position: relative; min-height: min(58vh, 500px); background: #E9E6E0;">
+        <image-slot id="app-scene" shape="rect" src="{{ activeApp.image }}" placeholder="Industrial scene — extrusion line, moulded parts, tyre plant"></image-slot>
+        <div style="position: absolute; inset: 0; pointer-events: none; padding: clamp(18px, 2.4vw, 32px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="display: flex; justify-content: space-between; gap: 16px; align-items: flex-start;">
+            <div style="background: rgba(16,17,20,0.86); color: #F6F4F0; padding: 14px 18px; animation: {{ appAnim }} 480ms ease both;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.55);">APPLICATION</div>
+              <div style="font-size: clamp(20px, 2.4vw, 32px); letter-spacing: -0.03em; font-weight: 600; padding-top: 6px;">{{ activeApp.name }}</div>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73; text-align: right; background: rgba(246,244,240,0.9); padding: 8px 10px;">{{ activeApp.process }}</div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; animation: {{ appAnim }} 560ms ease both;">
+            <sc-for list="{{ activeApp.props }}" as="p" hint-placeholder-count="4">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #17181B; background: rgba(246,244,240,0.92); border: 1px solid rgba(23,24,27,0.16); padding: 7px 11px;">{{ p }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(20px, 3vw, 44px); padding-top: 26px;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">SPECIFY THESE GRADES</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding-top: 14px;">
+            <sc-for list="{{ activeApp.products }}" as="p" hint-placeholder-count="4">
+              <a href="{{ p.href }}" style="font-size: 15px; color: #17181B;" style-hover="color: #94A320;">{{ p.name }} <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">→</span></a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">THE PROBLEM IT SOLVES</div>
+          <p style="font-size: 15px; line-height: 1.6; color: #3A3C41; margin: 14px 0 0;">{{ activeApp.challenge }}</p>
+          <a href="{{ activeApp.href }}" style="display: inline-flex; gap: 8px; font-size: 14px; font-weight: 600; margin-top: 16px;">Full application page <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: #101114; color: #F6F4F0; margin-top: clamp(64px, 10vw, 150px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) 0;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">04 / MANUFACTURING</div>
+    <h2 style="font-size: clamp(32px, 5.4vw, 84px); line-height: 0.96; letter-spacing: -0.045em; font-weight: 600; margin: 24px 0 0; max-width: 17ch;">From material to performance.</h2>
+  </div>
+  <div style="max-width: 1480px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 4vw, 72px);">
+    <div style="position: sticky; top: 96px; height: min(66vh, 560px); align-self: start;">
+      <canvas data-karbn-cv="mfg" style="width: 100%; height: 100%; display: block;"></canvas>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.4); text-align: center;">MATERIAL PATH · {{ mfgPct }} COMPLETE</div>
+    </div>
+    <div style="padding: clamp(20px, 4vw, 60px) 0 clamp(48px, 8vw, 120px);">
+     <div data-karbn-list="mfg">
+      <sc-for list="{{ mfg }}" as="m" hint-placeholder-count="6">
+        <div style="padding: clamp(26px, 5vh, 60px) 0; border-bottom: 1px solid rgba(246,244,240,0.12);">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: {{ m.numColor }}; transition: color 300ms;">{{ m.num }}</span>
+            <span style="font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.035em; font-weight: 600; color: {{ m.titleColor }}; transition: color 300ms;">{{ m.name }}</span>
+          </div>
+          <p style="font-size: 16px; line-height: 1.6; color: rgba(246,244,240,0.62); margin: 12px 0 0 26px; max-width: 44ch;">{{ m.body }}</p>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: {{ m.numColor }}; padding: 14px 0 0 26px; transition: color 300ms;">{{ m.annot }}</div>
+        </div>
+      </sc-for>
+     </div>
+    </div>
+  </div>
+</section>
+
+<section id="transformation" style="background: #101114; color: #F6F4F0; scroll-margin-top: 110px;">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) 0;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">05 / THE RECOVERY LOOP</div>
+    <h2 style="font-size: clamp(32px, 5.4vw, 84px); line-height: 0.96; letter-spacing: -0.045em; font-weight: 600; margin: 24px 0 0; max-width: 18ch;">From one tyre to four material streams.</h2>
+  </div>
+
+  <div data-karbn-list="tyre" style="position: relative; height: 4800px; margin-top: clamp(28px, 4vw, 56px);">
+    <div style="position: sticky; top: 76px; height: calc(100vh - 76px); min-height: 460px; overflow: hidden;">
+      <div data-karbn-3d="tyre" style="position: absolute; inset: 0;"></div>
+      <div style="position: absolute; inset: 0; max-width: 1480px; margin: 0 auto; padding: clamp(20px, 3vw, 44px) clamp(20px, 4vw, 64px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none;">
+        <div style="max-width: 34ch;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #A8BB2E;">{{ stageNum }}</div>
+          <div style="font-size: clamp(26px, 3.4vw, 46px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; padding-top: 12px;">{{ stageTitle }}</div>
+          <p style="font-size: clamp(15px, 1.3vw, 18px); line-height: 1.55; color: rgba(246,244,240,0.66); margin: 14px 0 0;">{{ stageBody }}</p>
+        </div>
+        <div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1.4vw, 20px);">
+            <sc-for list="{{ lanes }}" as="l" hint-placeholder-count="4">
+              <div style="border-top: 1px solid {{ l.rule }}; padding-top: 12px; transition: border-color 400ms;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: {{ l.codeColor }}; transition: color 400ms;">{{ l.code }}</div>
+                <div style="font-size: clamp(13px, 1.15vw, 16px); font-weight: 500; letter-spacing: -0.01em; color: {{ l.nameColor }}; padding-top: 6px; transition: color 400ms;">{{ l.name }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.34); padding-top: 16px;">{{ scrubLabel }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(48px, 7vw, 100px) clamp(20px, 4vw, 64px) 0;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(246,244,240,0.5); padding-bottom: 18px; border-bottom: 1px solid rgba(246,244,240,0.2);">WHERE EACH STREAM GOES — SELECT ONE</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(20px, 3vw, 40px); padding-top: clamp(24px, 3vw, 44px);">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+        <div onClick="{{ c.select }}" onMouseEnter="{{ c.select }}" style="text-align: left; cursor: default; background: {{ c.bg }}; border: 1px solid {{ c.border }}; padding: clamp(18px, 2.2vw, 26px); transition: all 200ms; color: #F6F4F0;">
+          <div style="display: flex; align-items: baseline; gap: 12px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A8BB2E;">{{ c.code }}</span>
+            <span style="font-size: clamp(17px, 1.6vw, 22px); letter-spacing: -0.03em; font-weight: 600;">{{ c.name }}</span>
+          </div>
+          <p style="font-size: 14px; line-height: 1.6; color: rgba(246,244,240,0.66); margin: 12px 0 0;">{{ c.note }}</p>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(246,244,240,0.5); padding-top: 16px; line-height: 1.7;">{{ c.appLine }}</div>
+          <a href="{{ c.href }}" onFocus="{{ c.select }}" style="display: inline-flex; gap: 8px; font-size: 13px; font-weight: 600; padding-top: 16px; color: #A8BB2E;">{{ c.linkLabel }} <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: rgba(246,244,240,0.42); padding-top: 24px; max-width: 84ch;">Crumb rubber is drawn off earlier in the loop, at the mechanical processing stage, and is sold as a graded product in its own right — <a href="Product.dc.html#crumb-rubber" style="color: #A8BB2E;">crumb rubber technical page</a>. Recovered steel availability and the pyrolysis gas utilisation route are company statements that remain to be confirmed.</div>
+  </div>
+
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) clamp(56px, 8vw, 120px);">
+    <div style="font-size: clamp(28px, 4.4vw, 64px); line-height: 1.0; letter-spacing: -0.045em; font-weight: 600; max-width: 24ch;">Four streams. One recovery system.</div>
+  </div>
+</section>
+
+<section id="explorer" style="max-width: 1480px; margin: 0 auto; padding: clamp(64px, 10vw, 150px) clamp(20px, 4vw, 64px) 0; scroll-margin-top: 110px;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">06 / MATERIAL EXPLORER</div>
+  <h2 style="font-size: clamp(28px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 22px 0 0; max-width: 18ch;">Configure the requirement. Read the match.</h2>
+  <div style="display: grid; grid-template-columns: minmax(260px, 0.62fr) minmax(300px, 1.38fr); gap: clamp(28px, 5vw, 72px); padding-top: clamp(28px, 4vw, 48px);">
+    <div>
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+        <div style="padding-bottom: 32px;">
+          <div style="display: flex; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid rgba(23,24,27,0.14);">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">{{ st.num }}</span>
+            <span style="font-size: clamp(19px, 2vw, 26px); letter-spacing: -0.03em; font-weight: 600;">{{ st.label }}</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px;">
+            <sc-for list="{{ st.options }}" as="o" hint-placeholder-count="6">
+              <button onClick="{{ o.toggle }}" style="cursor: pointer; font-size: 13px; padding: 9px 14px; border: 1px solid {{ o.border }}; background: {{ o.bg }}; color: {{ o.color }}; transition: all 140ms;">{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <button onClick="{{ resetExplorer }}" style="background: none; border: 0; padding: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #94A320; cursor: pointer;">RESET CONFIGURATION</button>
+    </div>
+    <div style="min-width: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73;">MATCHED GRADES</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #17181B;">{{ resultCount }}</div>
+      </div>
+      <sc-for list="{{ results }}" as="r" hint-placeholder-count="5">
+        <div style="display: grid; grid-template-columns: {{ resultCols }}; gap: clamp(16px, 2.4vw, 32px); align-items: start; padding: 24px 0; border-bottom: 1px solid rgba(23,24,27,0.12);">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">{{ r.familyUpper }}</div>
+            <a href="{{ r.href }}" style="display: block; font-size: clamp(19px, 2vw, 26px); letter-spacing: -0.03em; font-weight: 600; padding-top: 8px; color: #17181B;" style-hover="color: #94A320;">{{ r.name }}</a>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73; padding-top: 8px;">{{ r.spec }}</div>
+          </div>
+          <div style="font-size: 15px; line-height: 1.55; color: #3A3C41;">{{ r.desc }}</div>
+          <div style="display: {{ matchDisplay }};">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73;">MATCH</div>
+            <div style="font-size: 26px; letter-spacing: -0.03em; font-weight: 600; padding-top: 6px;">{{ r.match }}</div>
+            <div style="height: 3px; background: rgba(23,24,27,0.12); margin-top: 10px;">
+              <div style="height: 3px; background: #94A320; width: {{ r.match }}; transition: width 300ms;"></div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 44px 0; font-size: 17px; color: #6C6E73;">Nothing in the published library satisfies every criterion. <a href="Contact.dc.html">Ask about a custom formulation</a>.</div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section data-karbn-stats="1" style="max-width: 1480px; margin: 0 auto; padding: clamp(64px, 10vw, 150px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">07 / SUSTAINABILITY</div>
+  <h2 style="font-size: clamp(34px, 6vw, 100px); line-height: 0.94; letter-spacing: -0.045em; font-weight: 600; margin: 22px 0 0;">Circularity, measured.</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-left: -1px; border-top: 1px solid rgba(23,24,27,0.12); margin-top: clamp(32px, 5vw, 60px);">
+    <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+      <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 32px 24px 32px 0;">
+        <div style="font-size: clamp(44px, 5.6vw, 84px); line-height: 0.88; letter-spacing: -0.05em; font-weight: 600; font-variant-numeric: tabular-nums;">{{ m.v }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 16px; line-height: 1.6; white-space: pre-line;">{{ m.l }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: #6C6E73; padding-top: 18px; max-width: 84ch;">* All four figures are company-stated, as published on finstercarbon.com, and are not independently verified. <a href="Sustainability.dc.html">What the 85% claim still needs →</a></div>
+</section>
+
+<section id="global" style="background: #101114; color: #F6F4F0; margin-top: clamp(64px, 10vw, 150px); scroll-margin-top: 110px;">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) clamp(48px, 7vw, 100px);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">08 / GLOBAL PRESENCE</div>
+    <h2 style="font-size: clamp(30px, 5vw, 76px); line-height: 0.96; letter-spacing: -0.045em; font-weight: 600; margin: 24px 0 0; max-width: 18ch;">Built locally. Connected globally.</h2>
+    <div style="position: relative; margin-top: clamp(28px, 4vw, 56px);">
+      <canvas data-karbn-map="world" style="width: 100%; aspect-ratio: 2.15 / 1; display: block;"></canvas>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(20px, 3vw, 44px); padding-top: clamp(28px, 4vw, 52px);">
+      <div style="border-top: 1px solid rgba(246,244,240,0.3); padding-top: 14px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #A8BB2E;">INDIA — MANUFACTURING &amp; R&amp;D</div>
+        <p style="font-size: 15px; line-height: 1.6; color: rgba(246,244,240,0.72); margin: 12px 0 0;">Masterbatch Technologies LLP and Finster Black Pvt. Ltd. Carbon black, masterbatch and tyre recovery operations, established 2009.</p>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(246,244,240,0.4); padding-top: 10px;">[EXACT PLANT LOCATIONS TO BE CONFIRMED]</div>
+      </div>
+      <div style="border-top: 1px solid rgba(246,244,240,0.3); padding-top: 14px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #A8BB2E;">EUROPE — COMMERCIAL</div>
+        <p style="font-size: 15px; line-height: 1.6; color: rgba(246,244,240,0.72); margin: 12px 0 0;">Masterbatch EU, the group's European commercial presence for masterbatch and carbon materials supply.</p>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(246,244,240,0.4); padding-top: 10px;">[OFFICE LOCATION TO BE CONFIRMED]</div>
+      </div>
+      <div style="border-top: 1px solid rgba(246,244,240,0.3); padding-top: 14px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #A8BB2E;">WORLDWIDE — SUPPLY</div>
+        <p style="font-size: 15px; line-height: 1.6; color: rgba(246,244,240,0.72); margin: 12px 0 0;">Export supply to international plastics, rubber and industrial manufacturers.</p>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(246,244,240,0.4); padding-top: 10px;">[MARKETS SERVED TO BE CONFIRMED]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">09 / THE GROUP</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: stretch; padding-top: clamp(24px, 4vw, 44px);">
+    <div style="min-height: min(46vh, 400px); background: #E9E6E0;">
+      <image-slot id="about-facility" shape="rect" placeholder="Drop a high-resolution photo here — compounding or granulation line"></image-slot>
+    </div>
+    <div>
+      <h2 style="font-size: clamp(26px, 3.6vw, 52px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 22ch;">Sixty-eight years of material experience.</h2>
+      <p style="font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: #3A3C41; margin: 20px 0 0; max-width: 48ch;">The group traces its origin to 1957 in the USA and began Indian operations in 2009. Masterbatch Technologies LLP manufactures and exports carbon black powder and masterbatch; Finster Black Pvt. Ltd. operates the tyre-recovery and pyrolysis platform at Khalapur, Raigad. Together they cover the route from carbon to colour and from waste back to resource.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; padding-top: 32px;">
+        <div style="border-top: 1px solid rgba(23,24,27,0.14); padding-top: 12px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73;">GROUP ORIGIN</div>
+          <div style="font-size: 15px; padding-top: 6px;">1957, USA</div>
+        </div>
+        <div style="border-top: 1px solid rgba(23,24,27,0.14); padding-top: 12px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73;">QUALITY SYSTEM</div>
+          <div style="font-size: 15px; padding-top: 6px;">ISO 9001:2015</div>
+        </div>
+        <div style="border-top: 1px solid rgba(23,24,27,0.14); padding-top: 12px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73;">INDIA OPERATIONS</div>
+          <div style="font-size: 15px; padding-top: 6px;">Established 2009</div>
+        </div>
+        <div style="border-top: 1px solid rgba(23,24,27,0.14); padding-top: 12px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6C6E73;">SITE</div>
+          <div style="font-size: 15px; padding-top: 6px;">Khalapur, Raigad</div>
+        </div>
+      </div>
+      <a href="About.dc.html" style="display: inline-flex; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 30px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">About the group <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">10 / NEWS &amp; INSIGHTS</div>
+  <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; padding-top: 22px;">
+    <h2 style="font-size: clamp(28px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 0;">From the group.</h2>
+    <a href="Contact.dc.html" style="font-size: 15px; font-weight: 600; color: #94A320;">Press enquiries →</a>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(20px, 3vw, 40px); padding-top: clamp(28px, 4vw, 48px);">
+    <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+      <div>
+        <div style="aspect-ratio: 4 / 3; background: #E9E6E0;">
+          <image-slot id="{{ n.slot }}" shape="rect" fit="cover" placeholder="{{ n.imgHint }}"></image-slot>
+        </div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #94A320; padding-top: 16px;">{{ n.cat }}</div>
+        <div style="font-size: clamp(17px, 1.6vw, 22px); line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; color: #6C6E73; padding-top: 8px;">{{ n.title }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #9C9C96; padding-top: 10px;">DATE — TBC</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section style="background: #101114; color: #F6F4F0; margin-top: clamp(64px, 10vw, 150px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(72px, 11vw, 170px) clamp(20px, 4vw, 64px);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(246,244,240,0.5);">11 / CONTACT</div>
+    <h2 style="font-size: clamp(36px, 6.4vw, 108px); line-height: 0.94; letter-spacing: -0.05em; font-weight: 600; margin: 26px 0 0; max-width: 17ch;">Let's engineer the right material for your application.</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: clamp(32px, 5vw, 56px);">
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #101114; background: #F6F4F0; padding: 18px 30px;" style-hover="background: #94A320; color: #F6F4F0;">Talk to an Expert</a>
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #F6F4F0; padding: 18px 30px; border: 1px solid rgba(246,244,240,0.34);" style-hover="border-color: #F6F4F0;">Request a Sample</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;initialFamily&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;carbon-black&quot;,&quot;masterbatch&quot;,&quot;circular-materials&quot;],&quot;default&quot;:&quot;carbon-black&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+const FAM = {
+  "carbon-black": { specimen: "CARBON BLACK POWDER", form: 0, items: ["N330", "N550", "N660", "Industrial Carbon Black", "Black Carbon Powder"], props: [{ v: "ASTM", l: "GRADE SYSTEM" }, { v: "Rubber", l: "PRIMARY USE" }, { v: "Powder", l: "SUPPLY FORM" }] },
+  "masterbatch": { specimen: "BLACK MASTERBATCH GRANULES", form: 1, items: ["K-C5400", "LLDPE", "LDPE", "Virgin LLDPE", "UV Stabilizer"], props: [{ v: "15–50%", l: "CARBON LOADING" }, { v: "300°C", l: "K-C5400 STABILITY" }, { v: "25 kg", l: "PACKAGING" }] },
+  "circular-materials": { specimen: "RECOVERED CARBON & CRUMB", form: 3, items: ["rCB", "TPO", "Crumb Rubber", "Recovered Steel"], props: [{ v: "85%", l: "GHG CLAIM*" }, { v: "36,000 t", l: "ANNUAL TPO*" }, { v: "Zero", l: "LANDFILL CLAIM*" }] },
+};
+
+const MFG = [
+  { name: "Raw material", body: "Carbon black grade and carrier resin are selected against the customer's polymer.", annot: "INPUT · N330 / N550 / N660" },
+  { name: "Formulation", body: "Loading, additive package and carrier are set for the target property set.", annot: "LOADING · 15–50%" },
+  { name: "Processing", body: "Carbon black is incorporated into the molten carrier under controlled shear.", annot: "COMPOUNDING" },
+  { name: "Dispersion", body: "Dispersion quality decides jetness, and in thin film whether specks appear at all.", annot: "CRITICAL CONTROL POINT" },
+  { name: "Quality control", body: "Batches are checked against the grade specification under the quality system.", annot: "ISO 9001:2015" },
+  { name: "Final material", body: "Pelletised, packed and shipped as a consistent, repeatable granule.", annot: "OUTPUT · 25 KG" },
+];
+
+const TYRE_STAGES = [
+  { num: "01 — END-OF-LIFE TYRE", title: "A tyre enters the recovery network.", body: "Scrap tyres are collected by the group's own fleet and graded before processing." },
+  { num: "02 — PROCESSING", title: "Sorting, shredding, granulation.", body: "The carcass is broken down mechanically, which also yields crumb rubber." },
+  { num: "03 — PYROLYSIS", title: "Thermal decomposition without oxygen.", body: "The tyre separates into distinct material fractions rather than being burned." },
+  { num: "04 — RECOVERED MATERIALS", title: "Four streams, drawn off and refined.", body: "Each fraction is refined for industrial use and returns to manufacturing." },
+];
+
+const LANES = [
+  { code: "rCB", name: "Recovered Carbon Black" },
+  { code: "TPO", name: "Tyre Pyrolysis Oil" },
+  { code: "Fe", name: "Recovered Steel" },
+  { code: "Gas", name: "Pyrolysis Gas" },
+];
+
+const NEWS = [
+  { slot: "news-slot-1", cat: "COMPANY", title: "[Article headline — first release to be provided]", imgHint: "News image — facility or announcement" },
+  { slot: "news-slot-2", cat: "TECHNOLOGY", title: "[Article headline — first release to be provided]", imgHint: "News image — process or laboratory" },
+  { slot: "news-slot-3", cat: "SUSTAINABILITY", title: "[Article headline — first release to be provided]", imgHint: "News image — recovery operations" },
+];
+
+const STREAM_DETAIL = {
+  "rCB": {
+    apps: ["Tyres", "Tubes", "Conveyor belts", "Oil seals", "Gaskets", "Coatings"],
+    perf: ["Semi-reinforcing filler", "Consistent particle size distribution", "Excellent dispersion"],
+    circ: "Substitutes for or blends with petroleum-based carbon black. The company states an 85% GHG reduction versus virgin production — a claim that still needs its methodology attached.",
+    href: "Product.dc.html#recovered-carbon-black", linkLabel: "rCB technical page",
+  },
+  "TPO": {
+    apps: ["Industrial furnace fuel", "Feedstock for carbon black", "Marine fuel", "Refinery feedstock", "Petrochemical complexes"],
+    perf: ["High-energy liquid fuel", "Alternative to fossil fuels", "36,000 t annual production*"],
+    circ: "Turns the liquid fraction of a tyre into industrial energy and petrochemical feedstock instead of waste.",
+    href: "Product.dc.html#tyre-pyrolysis-oil", linkLabel: "TPO technical page",
+  },
+  "CR": {
+    apps: ["Rubber compounding", "Surfacing", "Moulded goods"],
+    perf: ["Graded granulate", "Recycled content", "Mechanical recovery route"],
+    circ: "The mechanical route: rubber recovered without thermal processing, returned directly to compounding.",
+    href: "Product.dc.html#crumb-rubber", linkLabel: "Crumb rubber page",
+  },
+  "Fe": {
+    apps: ["Steel recycling"],
+    perf: ["Recycled content"],
+    circ: "Bead and belt steel separated during processing. Not listed in the published product range — availability to be confirmed.",
+    href: "Product.dc.html#recovered-steel", linkLabel: "Recovered steel page",
+  },
+  "Gas": {
+    apps: ["Process heat"],
+    perf: ["[Utilisation to be confirmed]"],
+    circ: "Process gas from pyrolysis. Neither the volume nor the utilisation route is published; treat as unconfirmed.",
+    href: "Technology.dc.html", linkLabel: "Technology page",
+  },
+};
+
+const STEP_DEFS = [
+  { key: "requirement", num: "01", label: "I need all of…", options: ["High Jetness", "UV Stability", "Dispersion", "Thermal Stability", "Opacity", "Polymer Compatibility", "Recycled Content"] },
+  { key: "polymer", num: "02", label: "My material is…", options: ["LDPE", "LLDPE", "PE", "ABS", "PVC", "Rubber"] },
+  { key: "application", num: "03", label: "My process is…", options: ["Film", "Injection Moulding", "Blow Moulding", "Pipes", "Automotive", "Agriculture", "Rubber", "Industrial"] },
+];
+
+const CHAIN = [
+  { name: "CARBON", body: "Furnace-grade carbon black for rubber and polymer applications.", markClip: "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)" },
+  { name: "MATERIALS", body: "Black and additive masterbatch formulated for consistent performance.", grid: true },
+  { name: "MANUFACTURING", body: "Compounding, dispersion and granulation under one roof.", markClip: "polygon(0 100%, 0 42%, 32% 42%, 32% 62%, 64% 28%, 64% 62%, 100% 28%, 100% 100%)" },
+  { name: "CIRCULARITY", body: "End-of-life tyres recovered back into industrial value.", markRadius: "50%" },
+];
+
+class Component extends DCLogic {
+  state = {
+    menu: false, navOpen: false,
+    family: "carbon-black", app: "plastics", stream: "rCB",
+    heroStep: 0, mfgStage: 0, mfgPct: 0, tyreStage: 0,
+    sel: { requirement: [], polymer: [], application: [] },
+    counted: false, c1: 0, c2: 0, c3: 0,
+    tick: 0,
+  };
+
+  // Elements are resolved from the DOM by data attribute rather than held in refs:
+  // ref="{{ hole }}" does not bind in this runtime, and a re-render can swap the node.
+  el(sel) { return document.querySelector(sel); }
+
+  componentDidMount() {
+    // The canvases and the scroll measurement are owned by materials.js, which runs
+    // outside any component lifecycle — a component that mounted, started tickers and
+    // then unmounted used to take them with it. Here we only mirror its progress.
+    const stageOf = (p, n) => Math.max(-1, Math.min(n - 1, Math.floor(p * n - 0.5)));
+    this.onProgress = e => {
+      const d = e.detail;
+      const mfgStage = stageOf(d.mfg, 6);
+      const mfgPct = Math.round(d.mfg * 100);
+      const tyreStage = Math.max(0, stageOf(Math.min(1, d.tyre / 0.78), 4));
+      if (mfgStage !== this.state.mfgStage || tyreStage !== this.state.tyreStage || Math.abs(mfgPct - this.state.mfgPct) > 2) {
+        this.setState({ mfgStage: mfgStage, mfgPct: mfgPct, tyreStage: tyreStage });
+      }
+      if (!this.state.counted) {
+        const stats = this.el('[data-karbn-stats]');
+        if (stats && stats.getBoundingClientRect().top < window.innerHeight * 0.8) this.runCounters();
+      }
+    };
+    window.addEventListener("karbn:progress", this.onProgress);
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("karbn:progress", this.onProgress);
+  }
+
+  runCounters() {
+    this.setState({ counted: true });
+    const t0 = performance.now();
+    const id = setInterval(() => {
+      const t = Math.min(1, (performance.now() - t0) / 1400);
+      const e = 1 - Math.pow(1 - t, 3);
+      this.setState({ c1: 15 * e, c2: 36000 * e, c3: 85 * e });
+      if (t >= 1) clearInterval(id);
+    }, 33);
+  }
+
+
+  pickFamily(slug) {
+    if (slug === this.state.family) return;
+    this.setState({ family: slug, tick: this.state.tick + 1 });
+    const v = window.KARBN_MAT && window.KARBN_MAT.AUTO.vis;
+    if (v && v.mat) v.mat.setForm(FAM[slug].form);
+  }
+
+  pickStream(code, i) {
+    const v = window.KARBN_MAT && window.KARBN_MAT.AUTO.vis;
+    if (v && v.tyre) v.tyre.setHighlight(i);
+    if (window.KARBN_TYRE3D) window.KARBN_TYRE3D.setHighlight(i);
+    if (code !== this.state.stream) this.setState({ stream: code, tick: this.state.tick + 1 });
+  }
+
+  toggle(key, val) {
+    this.setState(s => {
+      const cur = s.sel[key];
+      const next = cur.includes(val) ? cur.filter(v => v !== val) : cur.concat(val);
+      return { sel: Object.assign({}, s.sel, { [key]: next }) };
+    });
+  }
+
+  renderVals() {
+    const K = window.KARBN;
+    if (!K) return { mobilePanelDisplay: "none", menuDisplay: "none" };
+    const alt = this.state.tick % 2 === 0 ? "riseA" : "riseB";
+    const stage = TYRE_STAGES[Math.max(0, Math.min(TYRE_STAGES.length - 1, this.state.tyreStage))];
+    const tyreP = (window.KARBN_MAT && window.KARBN_MAT.AUTO.progress.tyre) || 0;
+    const famSlug = this.state.family;
+    const famData = K.FAMILIES.find(f => f.slug === famSlug) || K.FAMILIES[0];
+    const famExtra = FAM[famSlug];
+
+    const appId = this.state.app;
+    const rawApp = K.APPS.find(a => a.slug === appId) || K.APPS[0];
+    const hrefFor = name => {
+      const p = K.PRODUCTS.find(x => x.name === name);
+      return p ? "Product.dc.html#" + p.slug : "Products.dc.html";
+    };
+
+    const sel = this.state.sel;
+    const configured = sel.requirement.length + sel.polymer.length + sel.application.length > 0;
+    const frac = (picked, has) => (picked.length ? picked.filter(has).length / picked.length : 0.75);
+    const scored = K.PRODUCTS.map(p => {
+      // every selected requirement must be met — each addition narrows the set
+      if (sel.requirement.length && !sel.requirement.every(v => p.reqs.includes(v))) return null;
+      if (sel.polymer.length && !sel.polymer.some(v => p.polymers.includes(v))) return null;
+      if (sel.application.length && !sel.application.some(v => p.apps.includes(v))) return null;
+      if (!configured) return { p, match: null };
+      // rank survivors: how completely they cover the polymers and processes asked for,
+      // plus how fully the grade is documented against performance properties
+      const polyFit = frac(sel.polymer, v => p.polymers.includes(v));
+      const appFit = frac(sel.application, v => p.apps.includes(v));
+      const documented = Math.min(1, p.reqs.length / 5);
+      const spec = p.spec && p.spec.indexOf("confirmed") === -1 ? 1 : 0.6;
+      const score = 0.48 + 0.16 * polyFit + 0.16 * appFit + 0.12 * documented + 0.08 * spec;
+      return { p, match: Math.round(Math.min(1, score) * 100) };
+    }).filter(Boolean).sort((a, b) => (b.match || 0) - (a.match || 0));
+
+    const streams = K.STREAMS.map((s, i) => {
+      const on = this.state.stream === s.code;
+      const shipped = i < 4; // syngas is a process gas, not a shipped stream — no lane
+      return {
+        code: s.code, name: s.name,
+        suffix: shipped ? "" : " (process gas)",
+        select: () => this.pickStream(s.code, i),
+        bg: on ? "#F6F4F0" : "transparent",
+        color: on ? "#101114" : shipped ? "rgba(246,244,240,0.82)" : "rgba(246,244,240,0.5)",
+        border: on ? "#F6F4F0" : "rgba(246,244,240,0.28)",
+        borderStyle: shipped ? "solid" : "dashed",
+      };
+    });
+    const sRaw = K.STREAMS.find(s => s.code === this.state.stream) || K.STREAMS[0];
+    const sDet = STREAM_DETAIL[sRaw.code] || STREAM_DETAIL.rCB;
+
+    const fmt = n => n >= 1000 ? Math.round(n).toLocaleString("en-US") : Math.round(n);
+
+    return {
+
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      menuDisplay: this.state.menu ? "grid" : "none",
+      mobilePanelDisplay: this.state.navOpen ? "block" : "none",
+      toggleNav: () => this.setState({ navOpen: !this.state.navOpen }),
+      mobileLinks: [
+        { label: "Products", href: "Products.dc.html" },
+        { label: "Applications", href: "Applications.dc.html" },
+        { label: "Technology", href: "Technology.dc.html" },
+        { label: "Sustainability", href: "Sustainability.dc.html" },
+        { label: "About", href: "About.dc.html" },
+        { label: "Contact", href: "Contact.dc.html" },
+      ],
+      chain: CHAIN.map((c, i) => ({
+        name: c.name, body: c.body, num: "0" + (i + 1),
+        divider: i === 0 ? "transparent" : "rgba(246,245,241,0.16)",
+        isGrid: c.grid === true, isShape: c.grid !== true,
+        dots: c.grid ? [0, 1, 2, 3, 4, 5, 6, 7, 8] : [],
+        markRadius: c.markRadius || "0", markClip: c.markClip || "none",
+      })),
+      riseAnim: alt, appAnim: alt, streamAnim: alt,
+      news: NEWS,
+      families: K.FAMILIES.map(f => ({
+        name: f.name, num: f.num, grades: f.grades,
+        select: () => this.pickFamily(f.slug),
+        color: f.slug === famSlug ? "#17181B" : "#A3A5A9",
+        numColor: f.slug === famSlug ? "#94A320" : "#A3A5A9",
+      })),
+      activeFamily: {
+        name: famData.name, desc: famData.desc, href: "Products.dc.html#" + famData.slug,
+        specimen: famExtra.specimen, items: famExtra.items, props: famExtra.props,
+      },
+      apps: K.APPS.map(a => ({
+        name: a.name,
+        select: () => { if (a.slug !== appId) this.setState({ app: a.slug, tick: this.state.tick + 1 }); },
+        color: a.slug === appId ? "#17181B" : "#8C8E93",
+        weight: a.slug === appId ? 600 : 400,
+        barW: a.slug === appId ? "34px" : "12px",
+      })),
+      activeApp: {
+        name: rawApp.name, challenge: rawApp.challenge, process: rawApp.process, props: rawApp.props,
+        image: (K.APP_IMAGES && K.APP_IMAGES[rawApp.slug]) || "",
+        href: "Applications.dc.html#" + rawApp.slug,
+        products: rawApp.products.map(n => ({ name: n, href: hrefFor(n) })),
+      },
+      mfg: MFG.map((m, i) => ({
+        name: m.name, body: m.body, annot: m.annot, num: String(i + 1).padStart(2, "0"),
+        titleColor: i <= this.state.mfgStage ? "#F6F4F0" : "rgba(246,244,240,0.4)",
+        numColor: i <= this.state.mfgStage ? "#94A320" : "rgba(246,244,240,0.32)",
+      })),
+      mfgPct: this.state.mfgPct + "%",
+      stageNum: stage.num, stageTitle: stage.title, stageBody: stage.body,
+      scrubLabel: "RECOVERY PROGRESS · " + Math.round(Math.min(1, tyreP / 0.78) * 100) + "%",
+      lanes: LANES.map((l, i) => {
+        const reached = tyreP / 0.78 > 0.64 + i * 0.05;
+        const hot = this.state.stream === l.code;
+        return {
+          code: l.code, name: l.name,
+          rule: hot ? "#A8BB2E" : reached ? "rgba(246,244,240,0.5)" : "rgba(246,244,240,0.16)",
+          codeColor: hot || reached ? "#A8BB2E" : "rgba(246,244,240,0.3)",
+          nameColor: hot ? "#F6F4F0" : reached ? "rgba(246,244,240,0.8)" : "rgba(246,244,240,0.34)",
+        };
+      }),
+      cards: LANES.map((l, i) => {
+        const raw = K.STREAMS.find(s => s.code === l.code) || l;
+        const det = STREAM_DETAIL[raw.code] || STREAM_DETAIL.rCB;
+        const on = this.state.stream === raw.code;
+        return {
+          code: l.code, name: raw.name, note: raw.note,
+          appLine: det.apps.slice(0, 4).join(" · ").toUpperCase(),
+          href: det.href, linkLabel: det.linkLabel,
+          select: () => this.pickStream(raw.code, i),
+          bg: on ? "rgba(168,187,46,0.10)" : "transparent",
+          border: on ? "#A8BB2E" : "rgba(246,244,240,0.18)",
+        };
+      }),
+      steps: STEP_DEFS.map(st => ({
+        num: st.num, label: st.label,
+        options: st.options.map(o => {
+          const on = sel[st.key].includes(o);
+          return {
+            label: o, toggle: () => this.toggle(st.key, o),
+            bg: on ? "#17181B" : "transparent",
+            color: on ? "#F6F4F0" : "#3A3C41",
+            border: on ? "#17181B" : "rgba(23,24,27,0.2)",
+          };
+        }),
+      })),
+      resetExplorer: () => this.setState({ sel: { requirement: [], polymer: [], application: [] } }),
+      matchDisplay: configured ? "block" : "none",
+      resultCols: configured ? "minmax(0, 1fr) minmax(0, 1.1fr) 120px" : "minmax(0, 1fr) minmax(0, 1.5fr)",
+      results: scored.map(r => ({
+        name: r.p.name, spec: r.p.spec, desc: r.p.desc, familyUpper: r.p.family.toUpperCase(),
+        href: "Product.dc.html#" + r.p.slug, match: r.match == null ? "" : r.match + "%",
+      })),
+      resultCount: scored.length + (scored.length === 1 ? " grade" : " grades"),
+      noResults: scored.length === 0,
+      metrics: [
+        { v: fmt(this.state.c1) + "M", l: "END-OF-LIFE TYRES\nCOLLECTED ANNUALLY*" },
+        { v: fmt(this.state.c2) + " t", l: "ANNUAL TYRE PYROLYSIS\nOIL PRODUCTION*" },
+        { v: fmt(this.state.c3) + "%", l: "GHG REDUCTION VS. VIRGIN\nCARBON BLACK PRODUCTION*" },
+        { v: "Zero", l: "LANDFILL — ALL TYRES\nCOLLECTED ARE RECYCLED*" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

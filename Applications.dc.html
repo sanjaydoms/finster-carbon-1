@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+</style>
+</helmet>
+<div style="background: #F6F4F0; overflow-x: clip;">
+<dc-import name="SiteHeader" active="applications" hint-size="100%,76px"></dc-import>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73;">APPLICATIONS</div>
+  <h1 style="font-size: clamp(40px, 7vw, 108px); line-height: 0.94; letter-spacing: -0.045em; font-weight: 600; margin: 26px 0 0; max-width: 16ch;">Engineered around your process.</h1>
+  <p style="font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; color: #3A3C41; max-width: 54ch; margin: clamp(24px, 4vw, 44px) 0 0;">Start from the industry rather than the product taxonomy. Each application below sets out the challenge, the materials that address it and the grades to specify.</p>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-left: -1px; border-top: 1px solid rgba(23,24,27,0.12); margin-top: clamp(36px, 5vw, 64px);">
+    <sc-for list="{{ index }}" as="i" hint-placeholder-count="9">
+      <a href="{{ i.anchor }}" style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 22px 24px 22px 0; color: #17181B; display: block;" style-hover="background: rgba(23,24,27,0.035);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">{{ i.num }}</div>
+        <div style="font-size: 19px; font-weight: 500; letter-spacing: -0.025em; padding-top: 10px;">{{ i.name }}</div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<sc-for list="{{ apps }}" as="a" hint-placeholder-count="9">
+  <section id="{{ a.slug }}" style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0; scroll-margin-top: 96px;">
+    <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: clamp(16px, 3vw, 40px); border-bottom: 1px solid rgba(23,24,27,0.16); padding-bottom: 26px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #94A320;">{{ a.num }}</div>
+      <div>
+        <h2 style="font-size: clamp(30px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin: 0;">{{ a.name }}</h2>
+        <p style="font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; color: #3A3C41; margin: 20px 0 0; max-width: 58ch;">{{ a.desc }}</p>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: clamp(16px, 3vw, 40px); padding-top: clamp(28px, 4vw, 48px);">
+      <div></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(28px, 4vw, 56px);">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">INDUSTRY CHALLENGE</div>
+          <p style="font-size: 15px; line-height: 1.6; color: #3A3C41; margin: 14px 0 0;">{{ a.challenge }}</p>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding: 28px 0 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">PROCESS COMPATIBILITY</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3A3C41; padding-top: 14px;">{{ a.process }}</div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">RECOMMENDED GRADES</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding-top: 14px;">
+            <sc-for list="{{ a.products }}" as="p" hint-placeholder-count="4">
+              <a href="{{ p.href }}" style="font-size: 15px; color: #17181B;" style-hover="color: #94A320;">{{ p.name }} <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #94A320;">→</span></a>
+            </sc-for>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding: 28px 0 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">KEY PROPERTIES</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; padding-top: 14px;">
+            <sc-for list="{{ a.props }}" as="pr" hint-placeholder-count="4">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #3A3C41; border: 1px solid rgba(23,24,27,0.18); padding: 6px 10px;">{{ pr }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding-bottom: 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">EXAMPLE USE CASES</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; padding-top: 14px;">
+            <sc-for list="{{ a.uses }}" as="u" hint-placeholder-count="5">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #3A3C41; border: 1px solid rgba(23,24,27,0.18); padding: 6px 10px;">{{ u }}</div>
+            </sc-for>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #6C6E73; padding: 28px 0 12px; border-bottom: 1px solid rgba(23,24,27,0.12);">TECHNICAL DOCUMENTS</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding-top: 14px; font-size: 14px;">
+            <a href="Contact.dc.html">Technical data sheets →</a>
+            <a href="Contact.dc.html">Safety data sheets →</a>
+            <a href="Sustainability.dc.html">Sustainability documentation →</a>
+          </div>
+          <a href="Contact.dc.html" style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; margin-top: 28px; padding-bottom: 4px; border-bottom: 1px solid #94A320;">{{ a.cta }} <span style="font-family: 'IBM Plex Mono', monospace;">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<section style="background: #17181B; color: #F6F4F0; margin-top: clamp(64px, 10vw, 140px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px); display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between;">
+    <h2 style="font-size: clamp(28px, 4vw, 56px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 22ch;">Your process isn't on this list?</h2>
+    <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #17181B; background: #F6F4F0; padding: 17px 28px;" style-hover="background: #94A320; color: #F6F4F0;">Talk to an Expert</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const K = window.KARBN;
+    if (!K) return {};
+    const slugFor = name => {
+      const p = K.PRODUCTS.find(x => x.name === name);
+      return p ? "Product.dc.html#" + p.slug : "Products.dc.html";
+    };
+    return {
+      index: K.APPS.map((a, i) => ({ name: a.name, anchor: "#" + a.slug, num: String(i + 1).padStart(2, "0") })),
+      apps: K.APPS.map((a, i) => ({
+        slug: a.slug, name: a.name, desc: a.desc, challenge: a.challenge, process: a.process,
+        uses: a.uses, props: a.props, cta: a.cta, num: String(i + 1).padStart(2, "0"),
+        products: a.products.map(n => ({ name: n, href: slugFor(n) })),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

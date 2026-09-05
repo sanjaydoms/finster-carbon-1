@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="data.js"></script>
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #F6F4F0; color: #17181B; font-family: Archivo, Helvetica, Arial, sans-serif; }
+  a { color: #94A320; text-decoration: none; }
+  a:hover { color: #17181B; }
+  ::selection { background: #94A320; color: #F6F4F0; }
+</style>
+</helmet>
+<div style="background: #F6F4F0; overflow-x: clip;">
+<dc-import name="SiteHeader" active="products" hint-size="100%,76px"></dc-import>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(40px, 5vw, 72px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73;">
+    <a href="Products.dc.html">PRODUCTS</a> / <a href="{{ familyHref }}">{{ familyUpper }}</a> / <span style="color: #17181B;">{{ nameUpper }}</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 5vw, 88px); align-items: start; padding-top: clamp(28px, 4vw, 48px);">
+    <div>
+      <h1 style="font-size: clamp(40px, 6.6vw, 96px); line-height: 0.94; letter-spacing: -0.045em; font-weight: 600; margin: 0;">{{ name }}</h1>
+      <div style="font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em; color: #94A320; padding-top: 16px;">{{ tagline }}</div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; padding-top: 36px;">
+        <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #F6F4F0; background: #17181B; padding: 17px 28px;" style-hover="background: #94A320;">Download TDS</a>
+        <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #17181B; padding: 17px 28px; border: 1px solid rgba(23,24,27,0.28);" style-hover="border-color: #17181B;">Request a Sample</a>
+      </div>
+    </div>
+    <div style="padding-top: 10px;">
+      <p style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; color: #3A3C41; margin: 0; max-width: 50ch;">{{ desc }}</p>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6C6E73; padding-top: 24px;">{{ appLine }}</div>
+    </div>
+  </div>
+  <sc-if value="{{ hasFigures }}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-left: -1px; border-top: 1px solid rgba(23,24,27,0.12); margin-top: clamp(40px, 6vw, 80px);">
+      <sc-for list="{{ figures }}" as="fig" hint-placeholder-count="4">
+        <div style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 28px 24px 28px 0;">
+          <div style="font-size: clamp(36px, 4.6vw, 66px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 600;">{{ fig.v }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6C6E73; padding-top: 14px;">{{ fig.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 88px); align-items: start;">
+    <div style="min-width: 0;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">TECHNICAL SPECIFICATION</div>
+      <sc-for list="{{ rows }}" as="row" hint-placeholder-count="7">
+        <div style="display: flex; justify-content: space-between; gap: 24px; padding: 15px 0; border-bottom: 1px solid rgba(23,24,27,0.12); font-size: 15px;">
+          <div style="color: #6C6E73;">{{ row.k }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; color: {{ row.color }}; text-align: right;">{{ row.v }}</div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+        <div style="border-left: 2px solid #94A320; padding: 14px 0 14px 16px; margin-top: 28px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #94A320;">SOURCE NOTE</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.8; color: #6C6E73; padding-top: 8px; max-width: 60ch;">{{ note }}</div>
+        </div>
+      </sc-if>
+    </div>
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">PERFORMANCE</div>
+      <sc-for list="{{ perf }}" as="p" hint-placeholder-count="5">
+        <div style="padding: 15px 0; border-bottom: 1px solid rgba(23,24,27,0.12); font-size: 16px;">{{ p }}</div>
+      </sc-for>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding: 40px 0 16px; border-bottom: 1px solid rgba(23,24,27,0.16);">APPLICATIONS</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px;">
+        <sc-for list="{{ applications }}" as="a" hint-placeholder-count="5">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3A3C41; border: 1px solid rgba(23,24,27,0.18); padding: 7px 11px;">{{ a }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px) 0;">
+  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #6C6E73; padding-bottom: 18px; border-bottom: 1px solid rgba(23,24,27,0.16);">OTHER GRADES IN {{ familyUpper }}</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-left: -1px;">
+    <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+      <a href="{{ r.href }}" style="background: #F6F4F0; box-shadow: -1px 0 0 rgba(23,24,27,0.12); padding: 26px 24px 26px 0; color: #17181B; display: block;" style-hover="background: rgba(23,24,27,0.035);">
+        <div style="font-size: 20px; font-weight: 600; letter-spacing: -0.025em;">{{ r.name }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #6C6E73; padding-top: 8px;">{{ r.tagline }}</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #94A320; padding-top: 14px;">→</div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section style="background: #17181B; color: #F6F4F0; margin-top: clamp(64px, 10vw, 140px);">
+  <div style="max-width: 1480px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) clamp(20px, 4vw, 64px); display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between;">
+    <div>
+      <h2 style="font-size: clamp(28px, 4vw, 56px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; margin: 0; max-width: 24ch;">Talk to the technical team about {{ name }}.</h2>
+      <p style="font-size: 17px; line-height: 1.55; color: rgba(246,244,240,0.66); margin: 20px 0 0; max-width: 46ch;">Specifications, let-down ratios, trial quantities and documentation.</p>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #17181B; background: #F6F4F0; padding: 17px 28px;" style-hover="background: #94A320; color: #F6F4F0;">Request a Sample</a>
+      <a href="Contact.dc.html" style="font-size: 14px; font-weight: 600; color: #F6F4F0; padding: 17px 28px; border: 1px solid rgba(246,244,240,0.34);" style-hover="border-color: #F6F4F0;">Talk to Technical Team</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+
+<a href="Contact.dc.html" style="position: fixed; right: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 40px); z-index: 70; background: #94A320; color: #F6F4F0; font-size: 13px; font-weight: 600; letter-spacing: 0.01em; padding: 16px 24px; box-shadow: 0 16px 32px -16px rgba(23,24,27,0.5);" style-hover="background: #17181B;">Request Information</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;k-c5400&quot;,&quot;n330&quot;,&quot;n550&quot;,&quot;n660&quot;,&quot;industrial-carbon-black&quot;,&quot;black-carbon-powder&quot;,&quot;lldpe-masterbatch&quot;,&quot;ldpe-masterbatch&quot;,&quot;virgin-lldpe-masterbatch&quot;,&quot;plastic-black-masterbatch&quot;,&quot;uv-stabilizer-masterbatch&quot;,&quot;recovered-carbon-black&quot;,&quot;tyre-pyrolysis-oil&quot;,&quot;crumb-rubber&quot;,&quot;recovered-steel&quot;],&quot;default&quot;:&quot;k-c5400&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { slug: null };
+
+  componentDidMount() {
+    this.sync = () => {
+      const s = (window.location.hash || "").replace("#", "");
+      this.setState({ slug: s || null });
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", this.sync);
+    const s = (window.location.hash || "").replace("#", "");
+    if (s) this.setState({ slug: s });
+  }
+
+  componentWillUnmount() { window.removeEventListener("hashchange", this.sync); }
+
+  renderVals() {
+    const K = window.KARBN;
+    if (!K) return {};
+    const slug = this.state.slug || this.props.slug || "k-c5400";
+    const p = K.bySlug(slug) || K.bySlug("k-c5400");
+    const fam = K.FAMILIES.find(f => f.slug === p.familySlug) || K.FAMILIES[0];
+    return {
+      name: p.name, nameUpper: p.name.toUpperCase(), tagline: p.tagline, desc: p.desc, appLine: p.appLine,
+      familyUpper: p.family.toUpperCase(), familyHref: "Products.dc.html#" + p.familySlug,
+      figures: p.figures, hasFigures: p.figures.length > 0,
+      rows: p.rows.map(r => ({ k: r.k, v: r.v, color: r.v === K.TBC ? "#A8A199" : "#17181B" })),
+      perf: p.perf, applications: p.applications,
+      note: p.note || "", hasNote: !!p.note,
+      related: K.PRODUCTS.filter(x => x.familySlug === fam.slug && x.slug !== p.slug)
+        .map(x => ({ name: x.name, tagline: x.tagline, href: "Product.dc.html#" + x.slug })),
+    };
+  }
+}
+</script>
+</body>
+</html>
