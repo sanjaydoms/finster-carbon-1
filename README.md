@@ -36,6 +36,7 @@ Loaded per-artboard from the `<helmet>` block, not bundled.
 - `images/` — production art referenced by the artboards.
 - `uploads/` — raw pasted source images from the design session. Two are byte-identical
   to `images/hero-materials.png`; kept as-is rather than pruned.
+- `favicon.ico` (16/32/48) + `favicon.png` (256) — the logo's "C" mark, cropped from `images/finster-logo.png`.
 - `.thumbnail` — canvas preview, part of the export format.
 
 The source `.zip` is gitignored — it is the same files, zipped. Re-zip this directory
